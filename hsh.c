@@ -30,8 +30,8 @@ int main(int argc, char *argv[])
 		arg = str_tok(in, ' ');
 		if (check(arg) == 0)
 			continue;
-if (access(arg[0], F_OK) != -1)
-{
+
+
 		ex = stat(arg[0], &stat_in);
 		if (ex)
 
@@ -42,9 +42,9 @@ if (access(arg[0], F_OK) != -1)
 				continue; }
 			my_fork(arg, _path);
 			free(_path);}
-		
 		else
-		{ _path = arg[0];
-		my_fork(arg, _path); }}
-	free(arg);}
+		{_path = arg[0];
+		my_fork(arg, _path);}
+
+		free(arg);}
 	return (0); }

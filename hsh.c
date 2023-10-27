@@ -44,6 +44,5 @@ int main(int argc, char *argv[])
 			_path = arg[0];
 		my_fork(arg, _path);
 
-free(_path);
 	free(arg);}
 	return (0); }

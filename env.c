@@ -7,9 +7,7 @@
  */
 
 int envi(char **env_word)
-{ char **ptr, newline;
-	char *env;
-	char *_env;
+{ char **ptr;
 
 	ptr = environ;
 
@@ -21,22 +19,6 @@ int envi(char **env_word)
 			print_env("\n");
 			ptr++; }
 		return (1);  }
-
-	else if (env_word[1])
-	{ env = env_word[1];
-		++env;
-		_env = in_env(env);
-		write(1, _env, _strlen(_env));
-		newline = '\n';
-
-		write(1, &newline, 1);
-		return (1); }
-
-	else if (env_word[2])
-	{ perror("Error (number of argument is not correct)");
-		exit(EXIT_FAILURE); }
-
-	else
 		return (0); }
 		/**
 		 * print_env - print all environmen

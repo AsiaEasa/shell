@@ -14,8 +14,10 @@ int check(char **arg)
 		{
 			set(arg[1], arg[2]);
 			return (0); }
-		perror("Invalid setenv command syntax.");
-		return (0);
+		else
+		{free_all(arg);
+			perror("Invalid setenv command syntax."); 
+			return (0);}
 	}
 
 
@@ -24,5 +26,6 @@ int check(char **arg)
 
 	if (_strncmp(arg[0], "env", 3) == 0 || _strncmp(arg[0], "printenv", 4) == 0)
 	{ envi(arg);
+		free(arg);
 		return (0); }
 	return (1); }

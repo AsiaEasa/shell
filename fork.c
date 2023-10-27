@@ -16,6 +16,7 @@ int my_fork(char **arg, char *path)
 
 	if (child_ID == -1)
 	{ free_all(arg);
+		free(path);
 		perror("Error forking process");
 		exit(EXIT_FAILURE); }
 
@@ -24,6 +25,7 @@ int my_fork(char **arg, char *path)
 
 	if (waitpid(child_ID, &ID_status, 0) == -1)
 	{ free_all(arg);
+		free(path);
 		perror("Command not found");
 		exit(EXIT_FAILURE);
 	}

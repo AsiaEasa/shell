@@ -39,10 +39,12 @@ int main(int argc, char *argv[])
 			if (!_path)
 			{free(_path);
 				perror("path");
-				continue; }}
+				continue; }
+			my_fork(arg, _path);
+			free(_path);}
+		
 		else
-			_path = arg[0];
-		my_fork(arg, _path);
-
+		{ _path = arg[0];
+		my_fork(arg, _path); }
 	free(arg);}
 	return (0); }

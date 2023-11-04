@@ -19,9 +19,11 @@ void none_interactive(void)
 		arg = str_tok(in, ' ');
 
 		if (check(arg) == 0)
-			continue;
+		{
+			continue; }
 
 			re = my_fork(arg);
 		if (re >= 0)
-			exit(re); 
+		{
+			exit(re); }
 	free(arg); }}

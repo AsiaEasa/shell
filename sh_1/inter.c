@@ -6,13 +6,11 @@
  * Return: void
  */
 void interactive(void)
-{int ex, enough;
+{int ex, re;
 	char in[BUFFER_SIZE], *_path, *prompt, **arg, *line;
 	struct stat stat_in;
-	int re;
-	re = -1;
-	(void) argc, (void) argv;
 
+	re = -1;
 	prompt = "$ ";
 	while (re == -1)
 
@@ -44,5 +42,4 @@ void interactive(void)
 		free(arg);
 
 		if (re >= 0)
-			exit(re); }
-	return (0); }
+			exit(re); }}

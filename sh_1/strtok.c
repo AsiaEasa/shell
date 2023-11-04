@@ -26,18 +26,23 @@ char **str_tok(char str[BUFFER_SIZE], char separate)
 			words = t;
 			t = &str[n];
 		}
+		if (words[0] == '#')
+		{ 
+			arg[i] = NULL;
+			return (arg);
+		}
 		t++;
 	}
 	arg[i++] = words;
 	arg[i] = NULL;
 	return (arg); }
 
-/**
- *_strcat - concatenates two string
- * @dest: input value
- * @src: input value
- * Return: void
- */
+	/**
+	 *_strcat - concatenates two string
+	 * @dest: input value
+	 * @src: input value
+	 * Return: void
+	 */
 char *_strcat(char *dest, char *src)
 {
 	int i;

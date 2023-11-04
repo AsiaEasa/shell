@@ -21,7 +21,7 @@ int my_fork(char **arg, char *path)
 		exit(EXIT_FAILURE); }
 
 	if (child_ID == 0)
-		execve(path, arg, NULL);
+		execvp(path, arg);
 
 	if (waitpid(child_ID, &ID_status, 0) == -1)
 	{ free_all(arg);

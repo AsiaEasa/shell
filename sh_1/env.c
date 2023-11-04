@@ -18,8 +18,8 @@ int envi(char **env_word)
 			print_env(*ptr);
 			print_env("\n");
 			ptr++; }
-		return (1);  }
-		return (0); }
+		return (-1);  }
+		return (-1); }
 		/**
 		 * print_env - print all environmen
 		 * @str: point to environment

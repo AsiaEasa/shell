@@ -29,5 +29,5 @@ int my_fork(char **arg, char *path)
 		perror("Command not found");
 		exit(EXIT_FAILURE);
 	}
-	return (0);
+	return (-1);
 }

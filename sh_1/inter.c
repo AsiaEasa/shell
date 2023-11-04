@@ -9,13 +9,15 @@ void interactive(void)
 {int ex, enough;
 	char in[BUFFER_SIZE], *_path, *prompt, **arg, *line;
 	struct stat stat_in;
+	int re;
+	re = -1;
 	(void) argc, (void) argv;
 
 	prompt = "$ ";
-	while (enough)
+	while (re == -1)
 
 	{
-			write(STDOUT_FILENO, prompt, 2);
+		write(STDOUT_FILENO, prompt, 2);
 
 		line =  my_getline();
 		strcpy(in, line);
@@ -33,11 +35,14 @@ void interactive(void)
 			{free(_path);
 				perror("path");
 				continue; }
-			my_fork(arg, _path);
+			re = my_fork(arg, _path);
 			free(_path);}
 		else
 		{_path = arg[0];
-			my_fork(arg, _path);}
+			re = my_fork(arg, _path);}
 
-		free(arg);}
+		free(arg);
+
+		if (re >= 0)
+			exit(re); }
 	return (0); }

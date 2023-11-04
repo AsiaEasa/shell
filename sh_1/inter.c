@@ -31,7 +31,7 @@ void interactive(void)
 		{ _path = Path(arg[0]);
 			if (!_path)
 			{free(_path);
-				perror("path");
+				perror("./hsh");
 				continue; }
 			re = my_fork(arg, _path);
 			free(_path);}

@@ -6,32 +6,45 @@
  * Return: string
  */
 
-char **str_tok(char str[BUFFER_SIZE], char separate)
-{ char *words, **arg, *t;
-	int i = 0, n;
+char **str_tok(char *line)
+{ int buffersize, j;
+	char **given_tokens;
+	char *token;
 
-	words = str;
-	t = str;
-	arg = malloc(BUFFER_SIZE * sizeof(char *));
-	if (arg == NULL)
-		return (NULL);
+	buffersize = 64;
+	j = 0;
+	given_tokens = malloc(buffersize * sizeof(char *));
 
-	for (n = 0; str[n] != '\0'; n++)
+	if (!given_tokens)
 	{
-		if (str[n] == separate)
-		{
-			str[n] = '\0';
-			arg[i++] = words;
-			t++;
-			words = t;
-			t = &str[n];
-		}
-		t++;
+		_puts("allocation error in split_line: tokensi\n");
+		exit(EXIT_FAILURE);
 	}
-	arg[i++] = words;
-	arg[i] = NULL;
-	return (arg); }
-
+	token = strtok(line, " ");
+	while (token != NULL)
+	{
+		/* handle comments */
+		if (token[0] == '#')
+		{
+			break;
+		}
+		given_tokens[j] = token;
+		j++;
+		if (j >= buffersize)
+		{
+			buffersize += buffersize;
+			given_tokens = realloc(given_tokens, buffersize * sizeof(char *));
+			if (!given_tokens)
+			{
+				_puts("reallocation error in split_line: tokens\n");
+				exit(EXIT_FAILURE);
+			}
+		}
+		token = strtok(NULL, " ");
+	}
+	given_tokens[j] = NULL;
+	return (given_tokens);
+}
 /**
  *_strcat - concatenates two string
  * @dest: input value

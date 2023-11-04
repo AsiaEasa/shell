@@ -32,7 +32,7 @@ extern char **environ;
 int envi(char **env_word);
 void print_env(char *str);
 char *in_env(char *in_env);
-char **str_tok(char str[BUFFER_SIZE], char separate);
+char **str_tok(char *line);
 char *_strcat(char *dest, char *src);
 void interactive(void);
 void none_interactive(void);

@@ -19,7 +19,7 @@ void interactive(void)
 		line =  read_line();
 		strcpy(in, line);
 		free(line);
-		arg = str_tok(in, ' ');
+		arg = str_tok(in);
 		if (check(arg) == 0)
 			continue;
 		re = my_fork(arg);

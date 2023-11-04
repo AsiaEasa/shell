@@ -1,47 +1,50 @@
 #include "hsh.h"
 
 /**
- * my_getline - read input command from standard input
- * Return: input strings
+ * read_line - read a line from the stream
+ *
+ * Return: pointer that points the the read line
  */
-char *my_getline(void)
+char *read_line(void)
 {
-	static char buffer[BUFFER_SIZE];
-	static int buffer_index;
-	static int buffer_size;
-	char *temp;
-	char *line = NULL;
-	int line_index = 0;
-	char current_char;
+	int j, ch, buffersize;
+	char *line;
 
+	buffersize = 1024, j = 0;
+	line = malloc(sizeof(char) * buffersize);
+
+	if (line == NULL)
+	{
+		_puts("allocation error in read_stream\n");
+		exit(EXIT_FAILURE);
+	}
 	while (1)
 	{
-		if (buffer_index >= buffer_size)
-		{buffer_size = read(STDIN_FILENO, buffer, BUFFER_SIZE);
-			buffer_index = 0;
-			if (buffer_size <= 0)
+		ch = getchar(); /* read first char from stream */
+		if (ch == EOF)
+		{
+			free(line);
+			exit(EXIT_SUCCESS);
+		}
+		else if (ch == '\n')
+		{
+			line[j] = '\0';
+			return (line);
+		}
+		else
+		{
+			line[j] = ch;
+		}
+		j++;
+		if (j >= buffersize)
+		{
+			buffersize += buffersize;
+			line = realloc(line, buffersize);
+			if (line == NULL)
 			{
-				if (line_index == 0)
-					return (NULL);
-				break; } }
-		current_char = buffer[buffer_index++];
-		if (current_char == '\n')
-			break;
-		temp = malloc((line_index + 1) * sizeof(char));
-		if (temp == NULL)
-		{free(line);
-			return (NULL); }
-		memcpy(temp, line, line_index * sizeof(char));
-		temp[line_index++] = current_char;
-		free(line);
-		line = temp; }
-	if (line != NULL)
-	{char *temp = malloc((line_index + 1) * sizeof(char));
-		if (temp == NULL)
-		{free(line);
-			return (NULL); }
-		memcpy(temp, line, line_index * sizeof(char));
-		temp[line_index] = '\0';
-		free(line);
-		line = temp; }
-	return (line); }
+				_puts("reallocation error in read_stream\n");
+				exit(EXIT_FAILURE);
+			}
+		}
+	}
+}

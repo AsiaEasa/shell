@@ -14,7 +14,7 @@ void none_interactive(void)
 	while (re == -1)
 
 	{
-		line =  my_getline();
+		line =  read_line();
 		strcpy(in, line);
 		free(line);
 		arg = str_tok(in, ' ');

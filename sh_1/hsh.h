@@ -12,12 +12,15 @@
 #include <unistd.h>
 #define BUFFER_SIZE 1024
 #define MAX_COMMAND_LENGTH 100
+void _puts(char *str);
+int _putchar(char c);
+char *read_line(void);
 void free_all(char **arg);
 int check(char **arg);
 int _strcmp(char *s1, char *s2);
 void set(char *variable, char *value);
 void unset(char *variable);
-char *my_getline();
+char *get_line(void);
 void chDir(char *directory);
 char *_strdup(char *str);
 char *_strchr(char *s, char c);

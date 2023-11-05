@@ -10,7 +10,6 @@ char **str_tok(char *line)
 { int buffersize, j;
 	char **given_tokens;
 	char *token;
-
 	buffersize = 64;
 	j = 0;
 	given_tokens = malloc(buffersize * sizeof(char *));

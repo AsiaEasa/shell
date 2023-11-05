@@ -7,15 +7,12 @@
  */
 
 void error_exit(char *arg_v) {
-	char *p = "Illegal number", m[BUFFER_SIZE], *t = "exit", ptr[BUFFER_SIZE];
-	int in_count = 1, i;
+	char *p = "Illegal number", l[BUFFER_SIZE],  m[3] = "\n", *t = "exit", ptr[BUFFER_SIZE];
+	int in_count = 1;
 	char *s = my_itoa(in_count, ptr, 10);
-	_strcpy(m, arg_v);
-	for(i = 0; m != '\0'; i++)
-		break;
-	m[i] = '\n';
-	m[i+1] = '\0';
-
+	strcpy(l, arg_v);
+	strcat(l, m);
+	arg_v = l;
 	write(2, "./hsh", 5);
 	write(2, ": ", 2);
 	write(2, s, _strlen(s));

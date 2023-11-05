@@ -12,6 +12,9 @@
 #include <unistd.h>
 #define BUFFER_SIZE 1024
 #define MAX_COMMAND_LENGTH 100
+char *my_itoa(int num, char str[], int base);
+void reverse(char str[], int length);
+void error(char *arg_v);
 void free_all(char **arg);
 int check(char **arg);
 int _strcmp(char *s1, char *s2);

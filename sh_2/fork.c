@@ -15,17 +15,17 @@ int my_fork(char **arg)
 	child_ID = fork();
 
 	if (child_ID == -1)
-	{ free_all(arg);
-		perror("Error forking process");
-		exit(EXIT_FAILURE); }
+	{	perror("Error forking process"); }
 
-	if (child_ID == 0)
-		execvp(arg[0], arg);
+	else if (child_ID == 0)
+	{ if (execvp(arg[0], arg) == -1)
+		{
+			perror("error in new_process: child process");
+		}
+	exit(EXIT_FAILURE);}
 
-	if (waitpid(child_ID, &ID_status, 0) == -1)
-	{ free_all(arg);
-		perror("Command not found");
-		exit(EXIT_FAILURE);
-	}
+		else
+	waitpid(child_ID, &ID_status, 0);
+
 	return (-1);
 }

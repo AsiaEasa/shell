@@ -12,7 +12,7 @@ int check(char **arg)
 		handle_exit(arg);
 
 	if (_strncmp(arg[0], "env", 3) == 0 || _strncmp(arg[0], "printenv", 4) == 0)
-	{ envi(arg);
+	{ envi();
 		free(arg);
 		return (0); }
 	return (1); }

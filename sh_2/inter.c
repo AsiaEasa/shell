@@ -7,7 +7,7 @@
  */
 void interactive(void)
 {int re;
-	char in[BUFFER_SIZE], *prompt, **arg, *line;
+	char *prompt, **arg, in[BUFFER_SIZE], *line;
 
 	re = -1;
 	prompt = "$ ";

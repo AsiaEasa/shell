@@ -23,7 +23,8 @@ void none_interactive(void)
 			continue; }
 
 			re = my_fork(arg);
+			free(arg);
+
 		if (re >= 0)
 		{
-			exit(re); }
-	free(arg); }}
+			exit(re); }}}

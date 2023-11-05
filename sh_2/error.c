@@ -10,7 +10,7 @@
  */
 
 void error(char *arg_v) {
-	char *p = "not found", ptr[BUFFER_SIZE];
+	char *p = "not found\n", ptr[BUFFER_SIZE];
 	int in_count = 1;
 	char *s = my_itoa(in_count, ptr, 10);
 

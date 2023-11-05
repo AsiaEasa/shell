@@ -11,6 +11,9 @@
 #include <errno.h>
 #include <unistd.h>
 #define BUFFER_SIZE 1024
+void error(char *arg_v);
+void reverse(char str[], int length);
+char *my_itoa(int num, char str[], int base);
 void _puts(char *str);
 int _strncmp(char *str1, char *str2, int n);
 int _putchar(char c);

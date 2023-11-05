@@ -21,14 +21,15 @@ int my_fork(char **arg)
 
 	if (child_ID == 0)
 	{if (execvp(arg[0], arg) == -1)
-		{ error(arg[0]); }
-		free (arg);
-		exit (127); }
+		{free_all(arg);
+			if (errno == EACCES)
+				exit (126);
+			exit(1); }}
 
-	if (waitpid(child_ID, &ID_status, 0) == -1)
-	{ free_all(arg);
-		perror("Command not found");
-		exit(EXIT_FAILURE);
+		if (waitpid(child_ID, &ID_status, 0) == -1)
+		{ free_all(arg);
+			perror("Command not found");
+			exit(EXIT_FAILURE);
+		}
+		return (-1);
 	}
-	return (-1);
-}

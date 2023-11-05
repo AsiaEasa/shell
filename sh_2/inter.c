@@ -16,7 +16,7 @@ void interactive(void)
 	{
 		write(STDOUT_FILENO, prompt, 2);
 
-		line =  read_line();
+		line =  get_line();
 		strcpy(in, line);
 		free(line);
 		arg = str_tok(in);

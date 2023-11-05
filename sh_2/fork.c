@@ -9,22 +9,28 @@
 
 int my_fork(char **arg)
 {
-	pid_t child_ID;
-	int ID_status;
 
-	child_ID = fork();
+	pid_t PID;
+	int stat;
 
-	if (child_ID == -1)
-	{ free_all(arg);
-		perror("Error forking process");
-		exit(EXIT_FAILURE); }
-
-	if (child_ID == 0)
-		execvp(arg[0], arg);
-
-	if (waitpid(child_ID, &ID_status, 0) == -1)
-	{ free_all(arg);
-		perror("Command not found");
+	PID = fork();
+	if (PID ==  0)
+	{
+		if (execvp(arg[0], arg) == -1)
+		{ free_all(arg);
+			perror("error in new_process: child process");
+		}
 		exit(EXIT_FAILURE);
 	}
+	else if (PID < 0)
+	{
+		perror("error in new_process: forking");
+	}
+	else
+	{
+		do {
+			waitpid(PID, &stat, WUNTRACED);
+		} while (!WIFEXITED(stat) && !WIFSIGNALED(stat));
+	}
+
 	return (-1); }

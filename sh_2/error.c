@@ -21,7 +21,6 @@ void error(char *arg_v) {
 	write(2, arg_v, _strlen(arg_v));
 	write(2, ": ", 2);
 	write(2, p, _strlen(p));
-	write(2, "\n", 2);
 }
 
 /**

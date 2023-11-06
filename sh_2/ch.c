@@ -13,6 +13,8 @@ void handle_cd(char **arg)
 	if ((buf = (char *)malloc((size_t)size)) != NULL)
 		if (getcwd(buf, (size_t)size) == NULL)
 		{ free(arg);
+			free(buf);
+			free(home_directory);
 			perror("getcwd");
 			exit(EXIT_FAILURE);
 		}
@@ -24,6 +26,8 @@ void handle_cd(char **arg)
 		else {
 			if (setenv("PWD", home_directory, 1) != 0)
 			{ free(arg);
+				free(buf);
+				free(home_directory);
 				perror("setenv");
 				exit(EXIT_FAILURE);
 			}
@@ -38,4 +42,5 @@ void handle_cd(char **arg)
 						   }
 					   }}
 	free(home_directory);
+	free(buf);
 }

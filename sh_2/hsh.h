@@ -12,6 +12,9 @@
 #include <unistd.h>
 #define BUFFER_SIZE 1024
 #define SIZE 2000
+#define MAX_COMMAND 1024
+void handle_cd(char **arg);
+char *in_env(char *in_env);
 void error_exit(char *arg_v);
 void error(char *arg_v);
 void reverse(char str[], int length);

@@ -32,3 +32,20 @@ void print_env(char *str)
 		str++;
 	}
 }
+
+char *in_env(char *in_env)
+{
+	char **ptr = environ;
+	int len = _strlen(in_env);
+
+	while (*ptr)
+	{
+
+		if (_strncmp(*ptr, in_env, len) == 0 && (*ptr)[len] == '=')
+		{
+			return (&((*ptr)[len + 1]));
+		}
+		ptr++;
+	}
+	return (NULL);
+}

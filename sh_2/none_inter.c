@@ -7,7 +7,7 @@
  */
 void none_interactive(void)
 {int re;
-	char in[BUFFER_SIZE], **arg, *line;
+	char in[SIZE], **arg, *line;
 
 	re = -1;
 	while (re == -1)

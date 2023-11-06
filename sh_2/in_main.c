@@ -7,7 +7,7 @@
  */
 
 int check(char **arg)
-{if (strcmp(arg[0], "cd") == 0)
+{if (_strncmp(arg[0], "cd", 2) == 0)
 	{	handle_cd(arg);
 		free(arg);
 		return(0); }

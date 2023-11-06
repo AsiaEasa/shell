@@ -22,7 +22,6 @@ void interactive(void)
 		arg = str_tok(in);
 		if (check(arg) == 0)
 			continue;
-		handle_cd(arg);
 		re = my_fork(arg);
 		free(arg);
 

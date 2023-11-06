@@ -7,7 +7,10 @@
  */
 
 int check(char **arg)
-{
+{if (strcmp(arg[0], "cd") == 0)
+	{	handle_cd(arg);
+		free(arg);
+		return(0); }
 	if (_strncmp(arg[0], "exit", 4) == 0)
 		handle_exit(arg);
 

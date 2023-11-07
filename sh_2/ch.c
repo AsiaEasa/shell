@@ -3,7 +3,7 @@
 void cd(char **arg) {
 	char cwd[1024];
 	char *path;
-	path = arg[0];
+	path = arg[1];
 
 	if (path == NULL) {
 		char *home = getenv("HOME");

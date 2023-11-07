@@ -1,46 +1,37 @@
 #include "hsh.h"
 
-void handle_cd(char **arg)
-{long size;
-	char *home_directory = in_env("HOME");
-	char *buf;
-	if (home_directory == NULL)
-	{
-		perror("getenv");
-		exit(EXIT_FAILURE);
-	}
-	size = pathconf(".", _PC_PATH_MAX);
-	if ((buf = (char *)malloc((size_t)size)) != NULL)
-		if (getcwd(buf, (size_t)size) == NULL)
-		{ free(arg);
-			free(buf);
-			free(home_directory);
-			perror("getcwd");
-			exit(EXIT_FAILURE);
-		}
+void cd(char **arg) {
+	char cwd[1024];
+	char *path;
+	path = arg[0];
 
-	if ( arg[1] || strncmp(arg[1], "~", 1) == 0) 
-	{
-		if (chdir(home_directory) != 0)
+	if (path == NULL) {
+		char *home = getenv("HOME");
+		if (home == NULL) {
+			fprintf(stderr, "HOME environment variable not set\n");
+			return;
+		}
+		if (chdir(home) == -1) {
 			perror("chdir");
-		else {
-			if (setenv("PWD", home_directory, 1) != 0)
-			{ free(arg);
-				free(buf);
-				free(home_directory);
-				perror("setenv");
-				exit(EXIT_FAILURE);
-			}
-		}}
-	else
-	{if (strncmp(arg[1], "-", 1) == 0) {
-						   if (chdir(buf) != 0) {
-							   perror("chdir");
-						   } else {
-							   if (setenv("PWD", buf, 1) != 0)
-								   perror("setenv");
-						   }
-					   }}
-	free(home_directory);
-	free(buf);
+		}
+	} else if (strcmp(path, "-") == 0) {
+		char *oldpwd = getenv("OLDPWD");
+		if (oldpwd == NULL) {
+			fprintf(stderr, "OLDPWD environment variable not set\n");
+			return;
+		}
+		if (chdir(oldpwd) == -1) {
+			perror("chdir");
+		}
+	} else {
+		if (chdir(path) == -1) {
+			perror("chdir");
+		}
+	}
+	if (getenv("PWD") != NULL) {
+		putenv("PWD");
+	}
+	if (getcwd(cwd, sizeof(cwd)) != NULL) {
+		setenv("PWD", cwd, 1);
+	}
 }

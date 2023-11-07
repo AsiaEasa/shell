@@ -26,7 +26,47 @@ int _strcmp(char *s1, char *s2)
  * @value: value of variable in environment
  * Return: change environment
  */
-void set(char *variable, char *value)
+int _setenv(char *name, char *value)
 {
-	if (setenv(variable, value, 1) != 0)
-		perror("Failed to set environment variable"); }
+	char **ep = environ;
+    char *buf = NULL;
+    size_t name_len, value_len;
+
+    if (!name) {
+        perror("setenv");
+        return -1;
+    }
+
+    name_len = strlen(name);
+    value_len = value ? strlen(value) : 0;
+
+    for (; *ep; ep++) {
+        if (!strncmp(*ep, name, name_len) && *(*ep + name_len) == '=') {
+            break;
+        }
+    }
+
+    if (!*ep) {
+        ep = (char **) realloc(environ, (sizeof(char *) * (1 + nelem(environ))));
+        if (!ep) {
+            perror("setenv");
+            return -1;
+        }
+        environ = ep;
+        ep = environ + nelem(environ) - 1;
+    }
+
+    if (value) {
+        buf = (char *) malloc(name_len + value_len + 2);
+        if (!buf) {
+            perror("setenv");
+            return -1;
+        }
+        sprintf(buf, "%s=%s", name, value);
+    }
+
+    free(*ep);
+    *ep = buf;
+
+    return 0;
+}

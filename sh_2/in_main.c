@@ -18,4 +18,11 @@ int check(char **arg)
 	{ envi();
 		free(arg);
 		return (0); }
+	if (_strcmp(arg[0], "setenv") == 0) {
+           if (arg[1] != NULL && arg[2] != NULL) {
+                _setenv(arg[1], arg[2]);
+            } else {
+                perror("Invalid setenv command syntax.");
+            }
+        }
 	return (1); }

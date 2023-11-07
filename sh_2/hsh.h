@@ -13,6 +13,7 @@
 #define BUFFER_SIZE 1024
 #define SIZE 2000
 #define MAX_COMMAND 1024
+#define nelem(x) (sizeof(x)/sizeof((x)[0]))
 void cd(char **arg);
 char *in_env(char *in_env);
 void error_exit(char *arg_v);
@@ -37,6 +38,7 @@ int envi(void);
 void print_env(char *str);
 char **str_tok(char *line);
 char *_strcat(char *dest, char *src);
+int _setenv(char *name, char *value);
 void interactive(void);
 void none_interactive(void);
 int main(void);

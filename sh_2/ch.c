@@ -7,14 +7,9 @@ void cd(char **arg) {
 
 	if (path == NULL) {
 		char *home = getenv("HOME");
-		if (home == NULL) {
-			fprintf(stderr, "HOME environment variable not set\n");
-			return;
-		}
-		if (chdir(home) == -1) {
-			perror("chdir");
-		}
-	} else if (strcmp(path, "-") == 0) {
+		chdir(home); }
+
+	else if (strcmp(path, "-") == 0) {
 		char *oldpwd = getenv("OLDPWD");
 		if (oldpwd == NULL) {
 			fprintf(stderr, "OLDPWD environment variable not set\n");
@@ -25,10 +20,10 @@ void cd(char **arg) {
 		if (chdir(oldpwd) == -1) {
 			perror("chdir");
 		}
-	} else {
+	} else
+{
 		if (chdir(path) == -1) {
-			perror("chdir");
-		}
+		ch_er(path); }
 	}
 	if (getenv("PWD") != NULL) {
 		putenv("PWD");

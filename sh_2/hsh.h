@@ -14,6 +14,7 @@
 #define SIZE 2000
 #define MAX_COMMAND 1024
 #define nelem(x) (sizeof(x)/sizeof((x)[0]))
+void ch_er(char *arg_v);
 void cd(char **arg);
 char *in_env(char *in_env);
 void error_exit(char *arg_v);

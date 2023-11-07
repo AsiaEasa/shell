@@ -20,6 +20,8 @@ void cd(char **arg) {
 			fprintf(stderr, "OLDPWD environment variable not set\n");
 			return;
 		}
+		_puts(oldpwd);
+		_putchar('\n');
 		if (chdir(oldpwd) == -1) {
 			perror("chdir");
 		}

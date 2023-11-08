@@ -20,12 +20,8 @@ int my_fork(char **arg)
 		exit(EXIT_FAILURE); }
 
 	if (child_ID == 0)
-	{	execvp(arg[0], arg);
-			free(arg);
-			if (errno == EACCES)
-				exit(127);
-			exit(2);
-	}
+		execvp(arg[0], arg);
+
 	if (waitpid(child_ID, &ID_status, 0) == -1)
 	{ free_all(arg);
 		perror("Command not found");

@@ -4,33 +4,35 @@
  * @arg: input argement
  */
 
-void cd(char **arg) {
+void cd(char **arg)
+{
 	char cd[1024];
 	char *path;
+
 	path = arg[1];
 
-	if (path == NULL) {
+	if (path == NULL)
+	{
+
 		char *home = in_env("HOME");
 		chdir(home); }
 
-	else if (_strcmp(path, "-") == 0) {
+	else if (_strcmp(path, "-") == 0)
+	{
 		char *oldpwd = in_env("OLDPWD");
+
 		if (oldpwd == NULL)
 			return;
 		_puts(oldpwd);
 		_putchar('\n');
-		if (chdir(oldpwd) == -1) {
+		if (chdir(oldpwd) == -1)
 			perror("chdir");
-		}
 	} else
 	{
-		if (chdir(path) == -1) {
+		if (chdir(path) == -1)
 			ch_er(path); }
-	}
-	if (in_env("PWD") != NULL) {
+	if (in_env("PWD") != NULL)
 		putenv("PWD");
-	}
-	if (getcwd(cd, sizeof(cd)) != NULL) {
+	if (getcwd(cd, sizeof(cd)) != NULL)
 		setenv("PWD", cd, 1);
-	}
 }

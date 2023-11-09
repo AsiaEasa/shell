@@ -6,19 +6,19 @@
  */
 
 int handle_exit(char **exit_args)
-{
-	int status =  EXIT_SUCCESS;
-
+{ int status;
 	if (exit_args[1])
-	{ if ((exit_args[1][0] == '-') || (exit_args[1][0] >= 'a' && exit_args[1][0] <= 'z') || (exit_args[1][0] >= 'A' && exit_args[1][0] <= 'Z'))
-		{error_exit(exit_args[1]);
+	{
+		if ((exit_args[1][0] == '-') ||
+			(exit_args[1][0] >= 'a' && exit_args[1][0] <= 'z') ||
+			(exit_args[1][0] >= 'A' && exit_args[1][0] <= 'Z'))
+		{ error_exit(exit_args[1]);
 			free(exit_args);
 			exit(2); }
 				else
 			{ status = _atoi(exit_args[1]);
 		free(exit_args);
 		exit(status); }}
-
 	free(exit_args);
 	exit(0);
 }
@@ -38,8 +38,7 @@ int _atoi(char *s)
 	{
 		if (s[i] == '-')
 			sign *= -1;
-		i++;
-	}
+		i++;	}
 	while (s[i] <= '9' && (s[i] >= '0' && s[i] != '\0'))
 	{
 		res = (res * 10) + (s[i] - '0');

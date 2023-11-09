@@ -8,9 +8,11 @@
 
 void ch_er(char *arg_v)
 {
-	char *p = "can't cd to ", l[BUFFER_SIZE],  m[3] = "\n", *t = "cd", ptr[BUFFER_SIZE];
+	char *p = "can't cd to ", l[BUFFER_SIZE],  m[3] = "\n";
+	char *t = "cd", ptr[BUFFER_SIZE];
 	int in_count = 1;
 	char *s = my_itoa(in_count, ptr, 10);
+
 	strcpy(l, arg_v);
 	strcat(l, m);
 	arg_v = l;

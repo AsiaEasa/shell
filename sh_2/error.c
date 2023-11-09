@@ -6,10 +6,13 @@
  * Return: print the error message if not return 0
  */
 
-void error_exit(char *arg_v) {
-	char *p = "Illegal number", l[BUFFER_SIZE],  m[3] = "\n", *t = "exit", ptr[BUFFER_SIZE];
+void error_exit(char *arg_v)
+{
+	char *p = "Illegal number", l[BUFFER_SIZE],  m[3] = "\n";
+	char *t = "exit", ptr[BUFFER_SIZE];
 	int in_count = 1;
 	char *s = my_itoa(in_count, ptr, 10);
+
 	strcpy(l, arg_v);
 	strcat(l, m);
 	arg_v = l;
@@ -25,15 +28,13 @@ void error_exit(char *arg_v) {
 
 }
 /**
- * print_error - prints an error message
+ * error - prints an error message
  * @arg_v: the argument input
- * @in_count: number of execution
- * @words: the command input
- * @str: string error to print
  * Return: print the error message if not return 0
  */
 
-void error(char *arg_v) {
+void error(char *arg_v)
+{
 	char *p = "not found\n", ptr[BUFFER_SIZE];
 	int in_count = 1;
 	char *s = my_itoa(in_count, ptr, 10);

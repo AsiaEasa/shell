@@ -2,7 +2,6 @@
 
 /**
  * envi -handles the env built-in command
- *@env_word: Arguments for the env command
  *Return: Nothing
  */
 

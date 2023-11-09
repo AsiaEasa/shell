@@ -4,7 +4,6 @@
  * my_fork -handles the fork
  * Return: Nothing If successful or error if it fails.
  * @arg: Arguments passed to the shell program.
- * @path: correct path of input command
  */
 
 int my_fork(char **arg)

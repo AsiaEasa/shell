@@ -15,6 +15,7 @@ void cd(char **arg)
 	{
 
 		char *home = in_env("HOME");
+
 		chdir(home); }
 
 	else if (_strcmp(path, "-") == 0)

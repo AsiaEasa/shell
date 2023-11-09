@@ -1,7 +1,7 @@
 #include "hsh.h"
 
 /**
- * interactive - UNIX command line interpreter
+ * none_interactive - UNIX command line none interpreter
  *
  * Return: void
  */

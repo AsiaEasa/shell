@@ -13,7 +13,7 @@ void none_interactive(void)
 	while (re == -1)
 
 	{
-		line =  read_line();
+		line = _read();
 		strcpy(in, line);
 		free(line);
 		arg = str_tok(in);

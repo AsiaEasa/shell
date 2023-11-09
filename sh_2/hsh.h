@@ -21,7 +21,7 @@ char *my_itoa(int num, char str[], int base);
 void _puts(char *str);
 int _strncmp(char *str1, char *str2, int n);
 int _putchar(char c);
-char *read_line(void);
+char *_read(void);
 void free_all(char **arg);
 int check(char **arg);
 int _strcmp(char *s1, char *s2);

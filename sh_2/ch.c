@@ -1,16 +1,20 @@
 #include "hsh.h"
+/**
+ * cd - change directory
+ * @arg: input argement
+ */
 
 void cd(char **arg) {
-	char cwd[1024];
+	char cd[1024];
 	char *path;
 	path = arg[1];
 
 	if (path == NULL) {
-		char *home = getenv("HOME");
+		char *home = in_env("HOME");
 		chdir(home); }
 
 	else if (strcmp(path, "-") == 0) {
-		char *oldpwd = getenv("OLDPWD");
+		char *oldpwd = in_env("OLDPWD");
 		if (oldpwd == NULL)
 			return;
 		_puts(oldpwd);
@@ -23,10 +27,10 @@ void cd(char **arg) {
 		if (chdir(path) == -1) {
 			ch_er(path); }
 	}
-	if (getenv("PWD") != NULL) {
+	if (in_env("PWD") != NULL) {
 		putenv("PWD");
 	}
-	if (getcwd(cwd, sizeof(cwd)) != NULL) {
-		setenv("PWD", cwd, 1);
+	if (getcwd(cd, sizeof(cd)) != NULL) {
+		setenv("PWD", cd, 1);
 	}
 }

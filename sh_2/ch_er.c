@@ -1,12 +1,13 @@
 #include "hsh.h"
 
 /**
- * error_exit - prints an error message
+ * ch_er - prints an error message
  * @arg_v: the argument input
  * Return: print the error message if not return 0
 */
 
-void ch_er(char *arg_v) {
+void ch_er(char *arg_v)
+{
 	char *p = "can't cd to ", l[BUFFER_SIZE],  m[3] = "\n", *t = "cd", ptr[BUFFER_SIZE];
 	int in_count = 1;
 	char *s = my_itoa(in_count, ptr, 10);
@@ -21,5 +22,4 @@ void ch_er(char *arg_v) {
 	write(2, ": ", 2);
 	write(2, p, _strlen(p));
 	write(2, arg_v, _strlen(arg_v));
-
 }

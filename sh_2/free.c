@@ -1,4 +1,8 @@
 #include "hsh.h"
+/**
+ * free_all - free memory
+ * @arg: Arguments passed to the shell program.
+ */
 
 void free_all(char **arg)
 {int i;

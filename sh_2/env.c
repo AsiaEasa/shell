@@ -32,6 +32,11 @@ void print_env(char *str)
 		str++;
 	}
 }
+/**
+ *in_env - gets the value of a speficied environment variable
+ * @in_env: Variable to look for in environment
+ * Return: Pointer to start index of the value.
+ */
 
 char *in_env(char *in_env)
 {

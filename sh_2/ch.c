@@ -13,7 +13,7 @@ void cd(char **arg) {
 		char *home = in_env("HOME");
 		chdir(home); }
 
-	else if (strcmp(path, "-") == 0) {
+	else if (_strcmp(path, "-") == 0) {
 		char *oldpwd = in_env("OLDPWD");
 		if (oldpwd == NULL)
 			return;

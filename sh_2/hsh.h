@@ -11,8 +11,6 @@
 #include <errno.h>
 #include <unistd.h>
 #define BUFFER_SIZE 1024
-#define SIZE 2000
-#define MAX_COMMAND 1024
 void ch_er(char *arg_v);
 void cd(char **arg);
 char *in_env(char *in_env);
@@ -37,8 +35,6 @@ extern char **environ;
 int envi(void);
 void print_env(char *str);
 char **str_tok(char *line);
-char *_strcat(char *dest, char *src);
-int _setenv(char *name, char *value);
 void interactive(void);
 void none_interactive(void);
 int main(void);

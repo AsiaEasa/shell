@@ -8,13 +8,13 @@
 char **str_tok(char *line)
 {
 	int j;
-	char **given;
+	char **str;
 	char *token;
 
 	j = 0;
-	given = malloc(BUFFER_SIZE * sizeof(char *));
+	str = malloc(BUFFER_SIZE * sizeof(char *));
 
-	if (!given)
+	if (!str)
 	{
 		write(1, "error in malloc\n", 16);
 		exit(EXIT_FAILURE);
@@ -26,12 +26,12 @@ char **str_tok(char *line)
 		{
 			break;
 		}
-		given[j] = token;
+	str[j] = token;
 		j++;
 		token = strtok(NULL, " ");
 	}
-	given[j] = NULL;
-	return (given);
+	str[j] = NULL;
+	return (str);
 }
 /**
  * _strcmp - compare string values

@@ -8,20 +8,20 @@
 
 char *read_line(void) 
  { 
-         int j, c, buffer; 
+         int j, c; 
          char *line; 
   
-         buffer = 1024, j = 0; 
-         line = malloc(sizeof(char) * buffer); 
+         j = 0; 
+         line = malloc(sizeof(char) * BUFFER_SIZE); 
   
          if (line == NULL) 
          { 
-                 _puts("allocation error in read_stream\n"); 
+                write(1, "error in read\n", 14); 
                  exit(EXIT_FAILURE); 
          } 
          while (1) 
          { 
-                 c = getchar(); /* read first char from stream */ 
+                 c = getchar(); 
                  if (c == EOF) 
                  { 
                          free(line); 

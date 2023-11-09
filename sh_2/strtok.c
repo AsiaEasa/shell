@@ -7,98 +7,39 @@
  */
 
 char **str_tok(char *line)
-{ int buffersize, j;
-	char **given_tokens;
-	char *token;
-	buffersize = 1024;
-	j = 0;
-	given_tokens = malloc(buffersize * sizeof(char *));
+	{
+         int j;
+         char **given;
+         char *token;
 
-	if (!given_tokens)
-	{
-		_puts("allocation error in split_line: tokensi\n");
-		exit(EXIT_FAILURE);
-	}
-	token = strtok(line, " ");
-	while (token != NULL)
-	{
-		/* handle comments */
-		if (token[0] == '#')
-		{
-			break;
-		}
-		given_tokens[j] = token;
-		j++;
-		if (j >= buffersize)
-		{
-			buffersize += buffersize;
-			given_tokens = realloc(given_tokens, buffersize * sizeof(char *));
-			if (!given_tokens)
-			{
-				_puts("reallocation error in split_line: tokens\n");
-				exit(EXIT_FAILURE);
-			}
-		}
-		token = strtok(NULL, " ");
-	}
-	given_tokens[j] = NULL;
-	return (given_tokens);
-}
+         j = 0;
+         given = malloc(BUFFER_SIZE * sizeof(char *));
+
+         if (!given)
+         {
+                 write(1, "error in malloc\n", 16);
+                 exit(EXIT_FAILURE);
+         }
+         token = strtok(line, " ");
+         while (token != NULL)
+         {
+                 if (token[0] == '#')
+                 {
+                         break;
+                 }
+                 given[j] = token;
+                 j++;
+                 token = strtok(NULL, " ");
+         }
+         given[j] = NULL;
+         return (given);
+ }
 /**
- *_strcat - concatenates two string
- * @dest: input value
- * @src: input value
- * Return: void
+ * _strcmp - compare string values
+ * @s1: input value
+ * @s2: input value
+ * Return: s1[i] - s2[i]
  */
-char *_strcat(char *dest, char *src)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (dest[i] != '\0')
-	{
-		i++;
-	}
-	j = 0;
-	while (src[j] != '\0')
-	{
-		dest[i] = src[j];
-		i++;
-		j++;
-	}
-
-	dest[i] = '\0';
-	return (dest);
-}
-
-/**
- * str_concat - concatenates three strings
- * @word1: input value
- * @word2: input value
- * @word3: input value
- * Return: void
- */
-
-char *str_concat(char *word1, char *word2, char *word3)
-{
-	int total_length = _strlen(word1) + _strlen(word2) + _strlen(word3) + 1;
-	char *result = malloc(total_length * sizeof(char));
-
-	if (result == NULL)
-	{
-		return (NULL); }
-	_strcpy(result, word1);
-	_strcat(result, word2);
-	_strcat(result, word3);
-	return (result); }
-
-	/**
-	 * _strcmp - compare string values
-	 * @s1: input value
-	 * @s2: input value
-	 * Return: s1[i] - s2[i]
-	 */
 int _strcmp(char *s1, char *s2)
 {
 	int i;

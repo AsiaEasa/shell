@@ -10,16 +10,8 @@ int handle_exit(char **exit_args)
 	int status =  EXIT_SUCCESS;
 
 	if (exit_args[1])
-	{ if (exit_args[1][0] == '-')
+	{ if ((exit_args[1][0] == '-') || (exit_args[1][0] >= 'a' && exit_args[1][0] <= 'z') || (exit_args[1][0] >= 'A' && exit_args[1][0] <= 'Z'))
 		{error_exit(exit_args[1]);
-			free(exit_args);
-			exit(2); }
-		else if (exit_args[1][0] >= 'a' && exit_args[1][0] <= 'z')
-			{ error_exit(exit_args[1]);
-			free(exit_args);
-			exit(2); }
-			else if (exit_args[1][0] >= 'A' && exit_args[1][0] <= 'Z')
-				{ error_exit(exit_args[1]);
 			free(exit_args);
 			exit(2); }
 				else

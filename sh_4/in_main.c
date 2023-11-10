@@ -32,6 +32,8 @@ int check(char **arg)
 				return(-1); }
 			arg[0] = NULL;
 			arg[0] = _path;
-			return(my_fork(arg)); }
+			my_fork(arg);
+		free(_path);
+		return(-1); }
 	return (my_fork(arg));
 }

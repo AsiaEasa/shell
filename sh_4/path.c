@@ -29,8 +29,12 @@ char *Path(char *command)
 			token = delimiter != NULL ? delimiter + 1 : NULL;
 		} else
 		{perror("memory");
+			free(pathCopy);
+			free(fullPath);
 			return(NULL); }
 	}
+	free(pathCopy);
+	free(fullPath);
 	return (NULL); }
 /**
  *_strchr - Entry point

@@ -16,8 +16,8 @@ void none_interactive(void)
 		line = _read();
 		arg = str_tok(line);
 		re = check(arg);
+
 		free(arg);
-		free(arg[0]);
 		free(line);
 		if (re >= 0)
 		{

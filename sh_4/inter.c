@@ -19,9 +19,7 @@ void interactive(void)
 		line =  get_line();
 		arg = str_tok(line);
 		re = check(arg);
-
-		free(arg);
-		free(arg[0]);
+free(arg);
 		free(line);
 		if (re >= 0)
 			exit(re); }}

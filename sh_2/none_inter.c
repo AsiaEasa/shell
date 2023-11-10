@@ -7,23 +7,17 @@
  */
 void none_interactive(void)
 {int re;
-	char in[BUFFER_SIZE], **arg, *line;
+	char **arg, *line;
 
 	re = -1;
 	while (re == -1)
 
 	{
 		line = _read();
-		strcpy(in, line);
-		free(line);
-		arg = str_tok(in);
-
-		if (check(arg) == 0)
-		{
-			continue; }
-		re = my_fork(arg);
+		arg = str_tok(line);
+		re = check(arg);
 		free(arg);
-
+		free(line);
 		if (re >= 0)
 		{
 			exit(re); }}}

@@ -4,7 +4,7 @@
  * @arg: input argement
  */
 
-void cd(char **arg)
+int cd(char **arg)
 {
 	char cd[1024];
 	char *path;
@@ -23,7 +23,7 @@ void cd(char **arg)
 		char *oldpwd = in_env("OLDPWD");
 
 		if (oldpwd == NULL)
-			return;
+			return(-1);
 		_puts(oldpwd);
 		_putchar('\n');
 		if (chdir(oldpwd) == -1)
@@ -36,4 +36,5 @@ void cd(char **arg)
 		putenv("PWD");
 	if (getcwd(cd, sizeof(cd)) != NULL)
 		setenv("PWD", cd, 1);
+ return(-1);
 }

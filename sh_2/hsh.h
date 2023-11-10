@@ -12,7 +12,7 @@
 #include <unistd.h>
 #define BUFFER_SIZE 1024
 void ch_er(char *arg_v);
-void cd(char **arg);
+int cd(char **arg);
 char *in_env(char *in_env);
 void error_exit(char *arg_v);
 void error(char *arg_v);

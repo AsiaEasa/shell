@@ -4,7 +4,6 @@
  * @exit_args: Arrguments for the exit command.
  * Return: Nothing
  */
-
 int handle_exit(char **exit_args)
 { int status;
 	if (exit_args[1])
@@ -13,14 +12,11 @@ int handle_exit(char **exit_args)
 			(exit_args[1][0] >= 'a' && exit_args[1][0] <= 'z') ||
 			(exit_args[1][0] >= 'A' && exit_args[1][0] <= 'Z'))
 		{ error_exit(exit_args[1]);
-			free(exit_args);
-			exit(2); }
+			return(2); }
 				else
 			{ status = _atoi(exit_args[1]);
-		free(exit_args);
-		exit(status); }}
-	free(exit_args);
-	exit(0);
+		return(status); }}
+	return(0);
 }
 
 /**

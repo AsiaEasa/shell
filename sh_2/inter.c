@@ -7,7 +7,7 @@
  */
 void interactive(void)
 {int re;
-	char *prompt, **arg, in[BUFFER_SIZE], *line;
+	char *prompt, **arg, *line;
 
 	re = -1;
 	prompt = "$ ";
@@ -17,13 +17,10 @@ void interactive(void)
 		write(STDOUT_FILENO, prompt, 2);
 
 		line =  get_line();
-		strcpy(in, line);
-		free(line);
-		arg = str_tok(in);
-		if (check(arg) == 0)
-			continue;
-		re = my_fork(arg);
-		free(arg);
+		arg = str_tok(line);
+		re = check(arg);
 
+		free(arg);
+		free(line);
 		if (re >= 0)
 			exit(re); }}

@@ -7,7 +7,7 @@
  */
 int my_fork(char **arg)
 {
-	pid_t child_ID;
+	pid_t child_ID, wpid;
 	int ID_status;
 
 	child_ID = fork();
@@ -22,7 +22,15 @@ int my_fork(char **arg)
 		perror("Error forking process");
 
 	else
-		waitpid(child_ID, &ID_status, 0);
+		wpid = waitpid(child_ID, &ID_status, 0);
 
+	if (wpid != -1)
+		if (WIFEXITED(ID_status)) {
+			int exit_status = WEXITSTATUS(ID_status);
+
+			if (exit_status == 2)
+				return(2);
+			else if (exit_status == 127) 
+				return(127); }
 	return (-1);
 }

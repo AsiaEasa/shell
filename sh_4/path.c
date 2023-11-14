@@ -31,7 +31,7 @@ char *Path(char *command)
 		{perror("memory");
 			free(pathCopy);
 			free(fullPath);
-			return(NULL); }
+			return (NULL); }
 	}
 	free(pathCopy);
 	free(fullPath);

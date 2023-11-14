@@ -1,7 +1,9 @@
 #include "hsh.h"
+
 /**
  * cd - change directory
  * @arg: input argement
+ * Return: Exit status.
  */
 
 int cd(char **arg)
@@ -23,7 +25,7 @@ int cd(char **arg)
 		char *oldpwd = in_env("OLDPWD");
 
 		if (oldpwd == NULL)
-			return(-1);
+			return (-1);
 		_puts(oldpwd);
 		_putchar('\n');
 		if (chdir(oldpwd) == -1)
@@ -36,5 +38,5 @@ int cd(char **arg)
 		putenv("PWD");
 	if (getcwd(cd, sizeof(cd)) != NULL)
 		setenv("PWD", cd, 1);
- return(-1);
+	return (-1);
 }

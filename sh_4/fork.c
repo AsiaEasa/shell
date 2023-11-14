@@ -7,13 +7,13 @@
  */
 int my_fork(char **arg)
 {
-	pid_t child_ID;
+	pid_t child_ID, wpid;
 	int ID_status;
 
 	child_ID = fork();
 	if (child_ID ==  0)
 	{
-		if (execve(arg[0], arg, NULL) == -1)
+		if (execve(arg[0], arg, environ) == -1)
 		{ error(arg[0]);
 			return(127);
 		}
@@ -22,7 +22,15 @@ int my_fork(char **arg)
 		perror("Error forking process");
 
 	else
-		waitpid(child_ID, &ID_status, 0);
+wpid = waitpid(child_ID, &ID_status, 0);
 
+	if (wpid != -1)
+		if (WIFEXITED(ID_status)) {
+			int exit_status = WEXITSTATUS(ID_status);
+
+			if (exit_status == 2)
+				return(2);
+			else if (exit_status == 127) 
+				return(127); }
 	return (-1);
 }

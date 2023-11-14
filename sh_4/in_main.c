@@ -27,9 +27,9 @@ int check(char **arg)
 		if (ex)
 		{ _path = Path(arg[0]);
 			if (!_path)
-			{ perror("path");
+			{ error(arg[0]);
 				free(_path);
-				return(-1); }
+				return(127); }
 			arg[0] = NULL;
 			arg[0] = _path;
 			my_fork(arg);

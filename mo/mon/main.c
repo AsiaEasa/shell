@@ -1,10 +1,10 @@
 #include "monty.h"
 int q_or_s = 0;
 /**
- * main - driver function for monty program
- * @ac: int num of arguments
- * @av: opcode file
- * Return: 0
+ * main - entry point
+ * @ac: arguments count
+ * @av: list of arguments
+ * Return: always 0
  */
 int main(int ac, char **av)
 {

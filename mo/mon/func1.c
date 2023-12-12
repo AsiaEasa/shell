@@ -1,110 +1,118 @@
 #include "monty.h"
 /**
- * add_dnodeint - add node to the beginning of list
- * @head: pointer to first node
- * @n: data inside node
- * Return: pointer to first node
+ * add_dnodeint - Adds a new node at the beginning
+ *
+ * @head: Head
+ *
+ * @n: Value
+ *
+ * Return: dlistint_t
  */
+
 stack_t *add_dnodeint(stack_t **head, const int n)
 {
-	stack_t *new;
+	stack_t *temp, *node = malloc(sizeof(stack_t));
 
-	new = malloc(sizeof(stack_t));
-	if (new == NULL)
+
+	if (node == NULL)
 		return (NULL);
+	node->n = n;
+	node->prev = NULL;
+	node->next = NULL;
 
 	if (*head == NULL)
 	{
-		new->n = n;
-		new->next = NULL;
-		new->prev = NULL;
-		*head = new;
-		return (*head);
+		node->next = NULL;
+		*head = node;
+		return (node);
 	}
-
-	(*head)->prev = new;
-	new->n = n;
-	new->next = *head;
-	new->prev = NULL;
-	*head = new;
-	return (*head);
+	temp = *head;
+	node->next = temp;
+	temp->prev = node;
+	*head = node;
+	return (node);
 }
 /**
- * delete_dnodeint_at_index - delete node a specific spot
- * @head: pointer to first node on list
- * @index: position to delete
- * Return: 1 if successful, -1 if failure
+ * delete_dnodeint_at_index - Deletes a node from
+ * a dlistint_t at a given index.
+ * @head: A pointer to the head of the dlistint_t.
+ *
+ * @index: The index of the node to delete.
+ *
+ * Return: Upon success = 1.
+ * otherwise = -1.
  */
 int delete_dnodeint_at_index(stack_t **head, unsigned int index)
 {
-	stack_t *tmp;
-	stack_t *tmp2;
-	unsigned int i;
+	stack_t *temp = *head;
 
 	if (*head == NULL)
 		return (-1);
 
-	tmp = *head;
-
-	if (index == 0)
+	for (; index != 0; index--)
 	{
-		*head = tmp->next;
-		if (tmp->next != NULL)
-			tmp->next->prev = NULL;
-		free(tmp);
-		return (1);
-	}
-	i = 0;
-	while (i < (index - 1))
-	{
-		if (tmp == NULL)
+		if (temp == NULL)
 			return (-1);
-		tmp = tmp->next;
-		i++;
+		temp = temp->next;
 	}
-	tmp2 = (tmp->next)->next;
-	if (tmp->next->next != NULL)
-		tmp->next->next->prev = tmp;
-	free(tmp->next);
-	tmp->next = tmp2;
 
+	if (temp == *head)
+	{
+		*head = temp->next;
+		if (*head != NULL)
+			(*head)->prev = NULL;
+	}
+
+	else
+	{
+		temp->prev->next = temp->next;
+		if (temp->next != NULL)
+			temp->next->prev = temp->prev;
+	}
+
+	free(temp);
 	return (1);
 }
 /**
- * add_dnodeint_end - add node to end of list
- * @head: pointer to first node
- * @n: data inside node
- * Return: pointer to first node
+ * add_dnodeint_end - Adds a new node at the end
+ *
+ * @head: struct
+ *
+ * @n: const int
+ *
+ * Return: dlistint_t
  */
+
 stack_t *add_dnodeint_end(stack_t **head, const int n)
 {
-	stack_t *tmp = *head;
-	stack_t *new_node;
+	stack_t *list = NULL, *end = *head;
 
-	new_node = malloc(sizeof(stack_t));
-	if (new_node == NULL)
+	list = malloc(sizeof(stack_t));
+
+	if (list == NULL)
+	{
 		return (NULL);
-
-	new_node->n = n;
+	}
+	list->n = n;
+	list->prev = NULL;
+	list->next = NULL;
 
 	if (*head == NULL)
 	{
-		new_node->next = NULL;
-		new_node->prev = NULL;
-		*head = new_node;
-		return (new_node);
+		*head = list;
+		return (*head);
 	}
 
-	while (tmp->next != NULL)
+	while (end->next != NULL)
 	{
-		tmp = tmp->next;
+		end = end->next;
 	}
+	list->prev = end;
+	end->next = list;
 
-	tmp->next = new_node;
-	new_node->prev = tmp;
-	new_node->next = NULL;
-	return (new_node);
+	return (list);
 }
+
 /**
  * free_dlistint - free a list
  * @head: pointer to first node
@@ -112,9 +120,10 @@ stack_t *add_dnodeint_end(stack_t **head, const int n)
  */
 void _free(stack_t *head)
 {
+	int i;
 	stack_t *tmp;
 
-	while (head != NULL)
+	for (i =0; head != NULL; i++)
 	{
 		tmp = head->next;
 		free(head);

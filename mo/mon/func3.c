@@ -56,9 +56,9 @@ instruct_func get_op_func(char *str)
 	instruction_t instruct[] = {
 		{"push", handle_push},
 		{"pall", handle_pall},
-		{"pint", _pint},
-		{"pop", _pop},
-		{"swap", _swap},
+		{"pint", handle_pint},
+		{"pop", handle_pop},
+		{"swap", handle_swap},
 		{"pchar", _pchar},
 		{"add", _add},
 		{"sub", _sub},

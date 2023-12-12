@@ -49,9 +49,10 @@ void handle_swap(stack_t **buff, unsigned int l_num);
 void handle_pop(stack_t **buff, unsigned int l_num);
 void handle_nop(__attribute__ ((unused))stack_t **buff,
 		                __attribute__ ((unused))unsigned int l_num);
-/*task4_6_7_8_9*/
+/*task4_6*/
 void handle_add(stack_t **buff, unsigned int l_num);
 void handle_sub(stack_t **buff, unsigned int l_num);
+/*task7_8_9*/
 void handle_mul(stack_t **buff, unsigned int l_num);
 void handle_div(stack_t **buff, unsigned int l_num);
 void handle_mod(stack_t **buff, unsigned int l_num);

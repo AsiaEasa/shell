@@ -49,6 +49,12 @@ void handle_swap(stack_t **buff, unsigned int l_num);
 void handle_pop(stack_t **buff, unsigned int l_num);
 void handle_nop(__attribute__ ((unused))stack_t **buff,
 		                __attribute__ ((unused))unsigned int l_num);
+/*task4_6_7_8_9*/
+void handle_add(stack_t **buff, unsigned int l_num);
+void handle_sub(stack_t **buff, unsigned int l_num);
+void handle_mul(stack_t **buff, unsigned int l_num);
+void handle_div(stack_t **buff, unsigned int l_num);
+void handle_mod(stack_t **buff, unsigned int l_num);
 /*h_exit*/
 void _free(stack_t *ptr);
 void handle_exit(stack_t **buff);
@@ -62,12 +68,7 @@ ssize_t getline(char **lineptr, size_t *n, FILE *stream);
 instruct_func get_op_func(char *str);
 void get(char *filename, stack_t **stack);
 void _pchar(stack_t **stack, unsigned int line_number);
-void _add(stack_t **stack, unsigned int line_number);
-void _sub(stack_t **stack, unsigned int line_number);
-void _mul(stack_t **stack, unsigned int line_number);
-void _div(stack_t **stack, unsigned int line_number);
 void _pstr(stack_t **stack, unsigned int line_number);
-void _mod(stack_t **stack, unsigned int line_number);
 void _rotl(stack_t **stack, unsigned int line_number);
 void _rotr(stack_t **stack, unsigned int line_number);
 int isnumber(char *str);

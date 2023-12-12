@@ -20,6 +20,12 @@ void handle_push(stack_t **buff, unsigned int l_num)
 	}
 
 	token = strtok(NULL, "\n ");
+	if (token == NULL)
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", l_num);
+		handle_exit(buff);
+	}
+
 	if (isnumber(token) == 1 && token != NULL)
 	{
 		new_push = atoi(token);

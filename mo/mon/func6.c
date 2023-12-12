@@ -9,10 +9,7 @@ int isnumber(char *str)
 {
 	unsigned int i;
 
-	if (str == NULL)
-		return (0);
-	i = 0;
-	while (str[i])
+	for (i = 0; str[i]; i++)
 	{
 		if (str[0] == '-')
 		{
@@ -21,7 +18,6 @@ int isnumber(char *str)
 		}
 		if (!isdigit(str[i]))
 			return (0);
-		i++;
 	}
 	return (1);
 }

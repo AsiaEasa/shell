@@ -4,7 +4,7 @@
  * @buff: linked lists for monty stack
  * @l_num: number of line
  */
-void handle_push(stack_t **buff, unsigned int l_number)
+void handle_push(stack_t **buff, unsigned int l_num)
 {
 	char *token, *m;
 	stack_t *new;
@@ -15,7 +15,7 @@ void handle_push(stack_t **buff, unsigned int l_number)
 	new = malloc(sizeof(stack_t));
 	if (!new)
 	{
-		write(2, p, strlen(p));
+		write(2, m, strlen(m));
 		handle_exit(buff);
 	}
 
@@ -26,7 +26,7 @@ void handle_push(stack_t **buff, unsigned int l_number)
 	}
 	else
 	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		fprintf(stderr, "L%d: usage: push integer\n", l_num);
 		handle_exit(buff);
 	}
 
@@ -46,7 +46,7 @@ void handle_push(stack_t **buff, unsigned int l_number)
  * @buff: pointer to linked list stack
  * @l_num: number of line
  */
-void handle_pall(stack_t **buff, __attribute__ ((unused))unsigned int l_num)
+void handle_pall(stack_t **buff, unsigned int l_num)
 {
 	stack_t *print;
 	int i;

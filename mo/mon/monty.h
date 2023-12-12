@@ -39,18 +39,20 @@ typedef struct instruction_s
 } instruction_t;
 
 /*task0*/
+void handle_push(stack_t **buff, unsigned int l_number);
+void handle_pall(stack_t **buff, unsigned int l_num);
+void is_stack(stack_t **buff, unsigned int l_num);
+void is_queue(stack_t **buff, unsigned int l_num);
 
 typedef void (*instruct_func)(stack_t **stack, unsigned int line_number);
 char *parse_line(char *line);
 ssize_t getline(char **lineptr, size_t *n, FILE *stream);
 instruct_func get_op_func(char *str);
 void get(char *filename, stack_t **stack);
-void _pall(stack_t **stack, unsigned int line_number);
 void _swap(stack_t **stack, unsigned int line_number);
 void _nop(stack_t **stack, unsigned int line_number);
 void _pchar(stack_t **stack, unsigned int line_number);
 void _pint(stack_t **stack, unsigned int line_number);
-void _push(stack_t **stack, unsigned int line_number);
 void _pop(stack_t **stack, unsigned int line_number);
 void _add(stack_t **stack, unsigned int line_number);
 void _sub(stack_t **stack, unsigned int line_number);
@@ -60,8 +62,6 @@ void _pstr(stack_t **stack, unsigned int line_number);
 void _mod(stack_t **stack, unsigned int line_number);
 void _rotl(stack_t **stack, unsigned int line_number);
 void _rotr(stack_t **stack, unsigned int line_number);
-void _queue(stack_t **stack, unsigned int line_number);
-void _stack(stack_t **stack, unsigned int line_number);
 stack_t *add_dnodeint_end(stack_t **head, const int n);
 stack_t *add_dnodeint(stack_t **head, const int n);
 void _free(stack_t *head);

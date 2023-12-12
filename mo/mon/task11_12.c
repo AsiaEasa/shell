@@ -37,7 +37,7 @@ void handle_pstr(stack_t **buff, __attribute__ ((unused))unsigned int l_nun)
 	stack_t *step;
 	int ascii;
 
-	if (stack == NULL || *stack == NULL)
+	if (buff == NULL || *buff == NULL)
 	{
 		printf("\n");
 		return;

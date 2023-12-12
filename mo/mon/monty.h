@@ -47,6 +47,7 @@ void is_queue(stack_t **buff, unsigned int l_num);
 void handle_pint(stack_t **buff, unsigned int l_num);
 void handle_swap(stack_t **buff, unsigned int l_num);
 void handle_pop(stack_t **buff, unsigned int l_num);
+/*h_exit*/
 
 typedef void (*instruct_func)(stack_t **stack, unsigned int line_number);
 char *parse_line(char *line);

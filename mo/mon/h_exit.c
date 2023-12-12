@@ -1,31 +1,31 @@
 #include "monty.h"
 
 /**
- * free_dlistint - free a list
- * @head: pointer to first node
+ * _free- free a list
+ * @ptr: pointer to first node
  *
  */
-void _free(stack_t *head)
+void _free(stack_t *ptr)
 {
 	int i;
 	stack_t *tmp;
 
 	for (i =0; head != NULL; i++)
 	{
-		tmp = head->next;
-		free(head);
-		head = tmp;
+		tmp = ptr->next;
+		free(ptr);
+		pte = tmp;
 	}
 }
 
 /**
- * error_exit - frees the stack and exits due to erro
- * @stack: pointer to the head of the stack
+ * handle_exit - frees the stack and exits due to erro
+ * @buff: pointer to the head of the stack
  *
  */
-void handle_exit(stack_t **stack)
+void handle_exit(stack_t **buff)
 {
-	if (*stack)
-		_free(*stack);
+	if (*buff)
+		_free(*buff);
 	exit(EXIT_FAILURE);
 }

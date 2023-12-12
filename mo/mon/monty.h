@@ -48,6 +48,11 @@ void handle_pint(stack_t **buff, unsigned int l_num);
 void handle_swap(stack_t **buff, unsigned int l_num);
 void handle_pop(stack_t **buff, unsigned int l_num);
 /*h_exit*/
+void _free(stack_t *ptr);
+void handle_exit(stack_t **buff);
+/*op_node*/
+stack_t *add_dnodeint(stack_t **head, const int n);
+stack_t *add_dnodeint_end(stack_t **head, const int n);
 
 typedef void (*instruct_func)(stack_t **stack, unsigned int line_number);
 char *parse_line(char *line);
@@ -64,9 +69,5 @@ void _pstr(stack_t **stack, unsigned int line_number);
 void _mod(stack_t **stack, unsigned int line_number);
 void _rotl(stack_t **stack, unsigned int line_number);
 void _rotr(stack_t **stack, unsigned int line_number);
-stack_t *add_dnodeint_end(stack_t **head, const int n);
-stack_t *add_dnodeint(stack_t **head, const int n);
-void _free(stack_t *head);
-void handle_exit(stack_t **stack);
 int isnumber(char *str);
 #endif

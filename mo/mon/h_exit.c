@@ -10,11 +10,11 @@ void _free(stack_t *ptr)
 	int i;
 	stack_t *tmp;
 
-	for (i =0; head != NULL; i++)
+	for (i =0; ptr != NULL; i++)
 	{
 		tmp = ptr->next;
 		free(ptr);
-		pte = tmp;
+		ptr = tmp;
 	}
 }
 

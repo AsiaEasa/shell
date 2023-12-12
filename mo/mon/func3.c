@@ -30,36 +30,36 @@ int get(FILE *file, stack_t **buff)
 	char *line;
 	size_t i = 0;
 	int line_count = 1;
-	instruct_func s;
+	instruct_func st;
 	int read;
 	
 	while ((read = getline(&buffer, &i, file)) != -1)
 	{
-		line = parse_line(buffer);
+		line = p_line(buffer);
 		if (line == NULL || line[0] == '#')
 		{
 			line_count++;
 			continue;
 		}
-		s = get_op_func(line);
-		if (s == NULL)
+		st = op_func(line);
+		if (st == NULL)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", line_count, line);
 			handle_exit(buff);
 		}
-		s(buff, line_count);
+		st(buff, line_count);
 		line_count++;
 	}
 	free(buffer);
 	return(0);
 }
 /**
- * get_op_func -  checks opcode and returns the correct function
- * @str: the opcode
+ * op_func -  checks opcode and returns the correct function
+ * @ptr: the opcode
  *
  * Return: returns a function, or NULL on failure
  */
-instruct_func get_op_func(char *str)
+instruct_func op_func (char *ptr)
 {
 	int i;
 
@@ -85,7 +85,7 @@ instruct_func get_op_func(char *str)
 	};
 
 	i = 0;
-	while (instruct[i].f != NULL && strcmp(instruct[i].opcode, str) != 0)
+	while (instruct[i].f != NULL && strcmp(instruct[i].opcode, ptr) != 0)
 	{
 		i++;
 	}
@@ -93,20 +93,21 @@ instruct_func get_op_func(char *str)
 	return (instruct[i].f);
 }
 
-#include "monty.h"
-
 /**
- * parse_line - parses a line for an opcode and arguments
- * @line: the line to be parsed
+ * p_line - parses a line for an opcode and arguments
+ * @buffer: the line to be parsed
  *
  * Return: returns the opcode or null on failure
  */
-char *parse_line(char *line)
+char *p_line(char *buffer)
 {
-	char *op_code;
+	char *op;
 
-	op_code = strtok(line, "\n ");
-	if (op_code == NULL)
+	if (buffer == NULL)
+		fprintf(stderr, "Error: malloc failed\n");
+
+	op = strtok(buffer, "\n ");
+	if (op == NULL)
 		return (NULL);
-	return (op_code);
+	return (op);
 }

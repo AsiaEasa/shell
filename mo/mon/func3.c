@@ -4,7 +4,6 @@
  * @file_name: the file namepath
  * Return: void
  */
-
 void open_file(char *file_name, stack_t **buff)
 { int check;
 	FILE *fd = fopen(file_name, "r");
@@ -45,7 +44,7 @@ int get(FILE *file, stack_t **buff)
 		s = get_op_func(line);
 		if (s == NULL)
 		{
-			printf("L%d: unknown instruction %s\n", line_count, line);
+			fprintf(stderr, "L%d: unknown instruction %s\n", line_count, line);
 			handle_exit(buff);
 		}
 		s(buff, line_count);

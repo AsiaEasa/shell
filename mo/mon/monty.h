@@ -74,7 +74,5 @@ char *parse_line(char *line);
 ssize_t getline(char **lineptr, size_t *n, FILE *stream);
 instruct_func get_op_func(char *str);
 void get(char *filename, stack_t **stack);
-void _pchar(stack_t **stack, unsigned int line_number);
-void _pstr(stack_t **stack, unsigned int line_number);
 int isnumber(char *str);
 #endif

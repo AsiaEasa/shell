@@ -24,7 +24,7 @@ void _pchar(stack_t **stack, unsigned int line_number)
 	if (*stack == NULL)
 	{
 		printf("L%d: can't pchar, stack empty\n", line_number);
-		error_exit(stack);
+		handle_exit(stack);
 	}
 
 	runner = *stack;
@@ -33,7 +33,7 @@ void _pchar(stack_t **stack, unsigned int line_number)
 	if (!isprint(val))
 	{
 		printf("L%d: can't pchar, value out of range\n", line_number);
-		error_exit(stack);
+		handle_exit(stack);
 	}
 
 	putchar(val);
@@ -73,7 +73,7 @@ void _pstr(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 void _stack(__attribute__ ((unused)) stack_t **stack,
 		__attribute__ ((unused)) unsigned int line_number)
 {
-	sq_flag = 0;
+	q_or_s = 0;
 }
 /**
  * _queue - sets sq_flag to queue
@@ -83,5 +83,5 @@ void _stack(__attribute__ ((unused)) stack_t **stack,
 void _queue(__attribute__ ((unused))stack_t **stack,
 		__attribute__ ((unused))unsigned int line_number)
 {
-	sq_flag = 1;
+	q_or_s = 1;
 }

@@ -5,7 +5,7 @@
  * @stack: pointer to the top of the stack
  *
  */
-void read_file(char *filename, stack_t **stack)
+void get(char *filename, stack_t **stack)
 {
 	char *buffer = NULL;
 	char *line;
@@ -19,7 +19,7 @@ void read_file(char *filename, stack_t **stack)
 	if (file == NULL)
 	{
 		printf("Error: Can't open file %s\n", filename);
-		error_exit(stack);
+		handle_exit(stack);
 	}
 	while ((read = getline(&buffer, &i, file)) != -1)
 	{
@@ -33,7 +33,7 @@ void read_file(char *filename, stack_t **stack)
 		if (s == NULL)
 		{
 			printf("L%d: unknown instruction %s\n", line_count, line);
-			error_exit(stack);
+			handle_exit(stack);
 		}
 		s(stack, line_count);
 		line_count++;

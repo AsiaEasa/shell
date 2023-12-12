@@ -1,5 +1,5 @@
 #include "monty.h"
-int sq_flag = 0;
+int q_or_s = 0;
 /**
  * main - driver function for monty program
  * @ac: int num of arguments
@@ -8,15 +8,17 @@ int sq_flag = 0;
  */
 int main(int ac, char **av)
 {
-	stack_t *stack;
+	stack_t *buff;
+	char *err;
 
-	stack = NULL;
+	err = "USAGE: monty file\n";
+	buff = NULL;
 	if (ac != 2)
 	{
-		printf("USAGE: monty file\n");
-		error_exit(&stack);
+		write(2, err, strlen(err));
+		handle_exit(&buff);
 	}
-	read_file(av[1], &stack);
-	free_dlistint(stack);
+	get(av[1], &buff);
+	_free(buff);
 	return (0);
 }

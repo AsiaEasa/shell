@@ -110,7 +110,7 @@ stack_t *add_dnodeint_end(stack_t **head, const int n)
  * @head: pointer to first node
  *
  */
-void free_dlistint(stack_t *head)
+void _free(stack_t *head)
 {
 	stack_t *tmp;
 

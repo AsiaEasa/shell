@@ -100,7 +100,7 @@ stack_t *add_dnodeint_end(stack_t **head, const int n)
 	if (*head == NULL)
 	{
 		*head = list;
-		return (*head);
+		return (list);
 	}
 
 	while (end->next != NULL)
@@ -111,22 +111,4 @@ stack_t *add_dnodeint_end(stack_t **head, const int n)
 	end->next = list;
 
 	return (list);
-}
-
-/**
- * free_dlistint - free a list
- * @head: pointer to first node
- *
- */
-void _free(stack_t *head)
-{
-	int i;
-	stack_t *tmp;
-
-	for (i =0; head != NULL; i++)
-	{
-		tmp = head->next;
-		free(head);
-		head = tmp;
-	}
 }

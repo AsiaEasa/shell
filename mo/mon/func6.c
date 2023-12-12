@@ -1,17 +1,5 @@
 #include "monty.h"
 /**
- * error_exit - frees the stack and exits due to erro
- * @stack: pointer to the head of the stack
- *
- */
-void handle_exit(stack_t **stack)
-{
-	if (*stack)
-		_free(*stack);
-	exit(EXIT_FAILURE);
-}
-
-/**
  * isnumber - checks if a string is a number
  * @str: string being passed
  *

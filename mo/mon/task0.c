@@ -15,7 +15,7 @@ void handle_push(stack_t **buff, unsigned int l_num)
 	new = malloc(sizeof(stack_t));
 	if (!new)
 	{
-		write(2, m, strlen(m));
+		write(2, m, _strlen(m));
 		handle_exit(buff);
 	}
 
@@ -28,7 +28,7 @@ void handle_push(stack_t **buff, unsigned int l_num)
 
 	if (isnumber(token) == 1 && token != NULL)
 	{
-		new_push = atoi(token);
+		new_push = _atoi(token);
 	}
 	else
 	{

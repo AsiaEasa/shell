@@ -15,7 +15,7 @@ int main(int ac, char **av)
 	buff = NULL;
 	if (ac != 2)
 	{
-		write(2, err, strlen(err));
+		write(2, err, _strlen(err));
 		handle_exit(&buff);
 	}
 	open_file(av[1], &buff);

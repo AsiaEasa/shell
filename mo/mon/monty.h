@@ -74,6 +74,12 @@ typedef void (*instruct_func)(stack_t **stack, unsigned int line_number);
 char *p_line(char *line);
 ssize_t getline(char **lineptr, size_t *n, FILE *stream);
 instruct_func op_func(char *str);
-
+/*str1*/
 int isnumber(char *str);
+int _isdigit(int c);
+int _strcmp(char *s1, char *s2);
+int _strlen(char *s);
+/*str2*/
+int _atoi(char *s);
+int _putchar(char c);
 #endif

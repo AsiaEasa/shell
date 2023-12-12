@@ -23,8 +23,8 @@ void handle_pchar(stack_t **buff, unsigned int l_num)
 		handle_exit(buff);
 	}
 
-	putchar(ascii);
-	putchar('\n');
+	_putchar(ascii);
+	_putchar('\n');
 }
 
 /**
@@ -49,8 +49,8 @@ void handle_pstr(stack_t **buff, __attribute__ ((unused))unsigned int l_nun)
 		ascii = step->n;
 		if (ascii <= 0 || ascii > 127)
 			break;
-		putchar(ascii);
+		_putchar(ascii);
 		step = step->next;
 	}
-	putchar('\n');
+	_putchar('\n');
 }

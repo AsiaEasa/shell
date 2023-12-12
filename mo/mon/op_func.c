@@ -85,7 +85,7 @@ instruct_func op_func (char *ptr)
 	};
 
 	i = 0;
-	while (instruct[i].f != NULL && strcmp(instruct[i].opcode, ptr) != 0)
+	while (instruct[i].f != NULL && _strcmp(instruct[i].opcode, ptr) != 0)
 	{
 		i++;
 	}

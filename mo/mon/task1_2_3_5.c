@@ -58,6 +58,7 @@ void handle_pop(stack_t **buff, unsigned int l_num)
 	*buff = tmp->next;
 	if (*buff != NULL)
 		(*buff)->prev = NULL;
+	free(tmp);
 }
 
 /**

@@ -1,26 +1,39 @@
 #include "monty.h"
 /**
+ * open_file - opens a file
+ * @file_name: the file namepath
+ * Return: void
+ */
+
+void open_file(char *file_name, stack_t **buff)
+{ int check;
+	FILE *fd = fopen(file_name, "r");
+
+	if (file_name == NULL || fd == NULL)
+	{ 	fprintf(stderr, "Error: Can't open file %s\n", file_name);
+		handle_exit(buff); }
+
+	get(fd, buff);
+	check = fclose(fd);
+	if (check == -1)
+		exit(-1);
+}
+
+/**
  * read_file - reads a bytecode file and runs commands
  * @filename: pathname to file
  * @stack: pointer to the top of the stack
  *
  */
-void get(char *filename, stack_t **stack)
+int get(FILE *file, stack_t **buff)
 {
 	char *buffer = NULL;
 	char *line;
 	size_t i = 0;
 	int line_count = 1;
 	instruct_func s;
-	int check;
 	int read;
-	FILE *file = fopen(filename, "r");
-
-	if (file == NULL)
-	{
-		printf("Error: Can't open file %s\n", filename);
-		handle_exit(stack);
-	}
+	
 	while ((read = getline(&buffer, &i, file)) != -1)
 	{
 		line = parse_line(buffer);
@@ -33,15 +46,13 @@ void get(char *filename, stack_t **stack)
 		if (s == NULL)
 		{
 			printf("L%d: unknown instruction %s\n", line_count, line);
-			handle_exit(stack);
+			handle_exit(buff);
 		}
-		s(stack, line_count);
+		s(buff, line_count);
 		line_count++;
 	}
 	free(buffer);
-	check = fclose(file);
-	if (check == -1)
-		exit(-1);
+	return(0);
 }
 /**
  * get_op_func -  checks opcode and returns the correct function

@@ -69,10 +69,11 @@ void handle_exit(stack_t **buff);
 stack_t *add_dnodeint(stack_t **head, const int n);
 stack_t *add_dnodeint_end(stack_t **head, const int n);
 
+void open_file(char *file_name, stack_t **buff);
+int get(FILE *file, stack_t **buff);
 typedef void (*instruct_func)(stack_t **stack, unsigned int line_number);
 char *parse_line(char *line);
 ssize_t getline(char **lineptr, size_t *n, FILE *stream);
 instruct_func get_op_func(char *str);
-void get(char *filename, stack_t **stack);
 int isnumber(char *str);
 #endif

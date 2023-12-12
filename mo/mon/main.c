@@ -18,7 +18,7 @@ int main(int ac, char **av)
 		write(2, err, strlen(err));
 		handle_exit(&buff);
 	}
-	get(av[1], &buff);
+	open_file(av[1], &buff);
 	_free(buff);
 	return (0);
 }

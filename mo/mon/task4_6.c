@@ -7,7 +7,7 @@
  */
 void handle_add(stack_t **buff, unsigned int l_num)
 {
-	if (buff ==NULL || *buff == NULL || (*buff)->next == NULL)
+	if (buff == NULL || *buff == NULL || (*buff)->next == NULL)
 	{
 		fprintf(stderr, "L%d: can't add, stack too short\n", l_num);
 		handle_exit(buff);

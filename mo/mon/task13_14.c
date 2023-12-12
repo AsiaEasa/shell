@@ -5,7 +5,7 @@
  * @l_num: the index of the current line
  *
  */
-void handle_rotl(stack_t **buff, __attribute__ ((unused))unsigned int l_num) 
+void handle_rotl(stack_t **buff, __attribute__ ((unused))unsigned int l_num)
 {
 	stack_t *step;
 	int num1, num2;
@@ -14,7 +14,7 @@ void handle_rotl(stack_t **buff, __attribute__ ((unused))unsigned int l_num)
 		return;
 	step = *buff;
 	while (step->next)
-		step= step->next;
+		step = step->next;
 	while (step)
 	{
 		if (!step->next)

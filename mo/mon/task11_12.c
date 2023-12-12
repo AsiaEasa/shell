@@ -32,7 +32,7 @@ void handle_pchar(stack_t **buff, unsigned int l_num)
  * @buff: linked list for stack
  * @l_num: line number opcode occurs on
  */
-void handle_pstr(stack_t **buff, __attribute__ ((unused))unsigned int l_nun)
+void handle_pstr(stack_t **buff, __attribute__ ((unused))unsigned int l_num)
 {
 	stack_t *step;
 	int ascii;

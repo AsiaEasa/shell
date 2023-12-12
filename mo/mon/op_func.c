@@ -2,6 +2,7 @@
 /**
  * open_file - opens a file
  * @file_name: the file namepath
+ * @buff: pointer to the top of the stack
  * Return: void
  */
 void open_file(char *file_name, stack_t **buff)
@@ -9,7 +10,7 @@ void open_file(char *file_name, stack_t **buff)
 	FILE *fd = fopen(file_name, "r");
 
 	if (file_name == NULL || fd == NULL)
-	{ 	fprintf(stderr, "Error: Can't open file %s\n", file_name);
+	{ fprintf(stderr, "Error: Can't open file %s\n", file_name);
 		handle_exit(buff); }
 
 	get(fd, buff);
@@ -19,10 +20,10 @@ void open_file(char *file_name, stack_t **buff)
 }
 
 /**
- * read_file - reads a bytecode file and runs commands
- * @filename: pathname to file
- * @stack: pointer to the top of the stack
- *
+ * get - reads a bytecode file and runs commands
+ * @file: pointer to file
+ * @buff: pointer to the top of the stack
+ * Return: zero
  */
 int get(FILE *file, stack_t **buff)
 {
@@ -32,7 +33,7 @@ int get(FILE *file, stack_t **buff)
 	int line_count = 1;
 	instruct_func st;
 	int read;
-	
+
 	while ((read = getline(&buffer, &i, file)) != -1)
 	{
 		line = p_line(buffer);
@@ -51,7 +52,7 @@ int get(FILE *file, stack_t **buff)
 		line_count++;
 	}
 	free(buffer);
-	return(0);
+	return (0);
 }
 /**
  * op_func -  checks opcode and returns the correct function
@@ -59,7 +60,7 @@ int get(FILE *file, stack_t **buff)
  *
  * Return: returns a function, or NULL on failure
  */
-instruct_func op_func (char *ptr)
+instruct_func op_func(char *ptr)
 {
 	int i;
 

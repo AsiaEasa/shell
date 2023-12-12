@@ -10,7 +10,7 @@ void handle_push(stack_t **buff, unsigned int l_num)
 	stack_t *new;
 	int new_push;
 
-	m= "Error: malloc failed\n";
+	m = "Error: malloc failed\n";
 	new_push = 0;
 	new = malloc(sizeof(stack_t));
 	if (!new)

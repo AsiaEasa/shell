@@ -13,7 +13,7 @@ void handle_pint(stack_t **buff, unsigned int l_num)
 	print = *buff;
 	if (print == NULL || *buff == NULL)
 	{
-		fprintf(stderr,"L%d: can't pint, stack empty\n", l_num);
+		fprintf(stderr, "L%d: can't pint, stack empty\n", l_num);
 		handle_exit(buff);
 	}
 	printf("%d\n", print->n);
@@ -49,6 +49,7 @@ void handle_swap(stack_t **buff, unsigned int l_num)
 void handle_pop(stack_t **buff, unsigned int l_num)
 {
 	stack_t *tmp;
+
 	if (buff == NULL || *buff == NULL)
 	{
 		fprintf(stderr, "L%d: can't pop an empty stack\n", l_num);

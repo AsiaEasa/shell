@@ -43,10 +43,12 @@ void handle_push(stack_t **buff, unsigned int l_number);
 void handle_pall(stack_t **buff, unsigned int l_num);
 void is_stack(stack_t **buff, unsigned int l_num);
 void is_queue(stack_t **buff, unsigned int l_num);
-/*task1_2_3*/
+/*task1_2_3_5*/
 void handle_pint(stack_t **buff, unsigned int l_num);
 void handle_swap(stack_t **buff, unsigned int l_num);
 void handle_pop(stack_t **buff, unsigned int l_num);
+void handle_nop(__attribute__ ((unused))stack_t **buff,
+		                __attribute__ ((unused))unsigned int l_num);
 /*h_exit*/
 void _free(stack_t *ptr);
 void handle_exit(stack_t **buff);
@@ -59,7 +61,6 @@ char *parse_line(char *line);
 ssize_t getline(char **lineptr, size_t *n, FILE *stream);
 instruct_func get_op_func(char *str);
 void get(char *filename, stack_t **stack);
-void _nop(stack_t **stack, unsigned int line_number);
 void _pchar(stack_t **stack, unsigned int line_number);
 void _add(stack_t **stack, unsigned int line_number);
 void _sub(stack_t **stack, unsigned int line_number);

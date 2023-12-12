@@ -18,6 +18,7 @@ void handle_pint(stack_t **buff, unsigned int l_num)
 	}
 	printf("%d\n", print->n);
 }
+
 /**
  * handle_swap - Swaps the top two elements of the stack.
  * @buff: Pointer to a pointer pointing to top node of the stack.
@@ -39,6 +40,7 @@ void handle_swap(stack_t **buff, unsigned int l_num)
 	print->n = print->next->n;
 	print->next->n = tmp;
 }
+
 /**
  * handle_pop - delete item at top of stack
  * @buff: pointer to linked list stack
@@ -56,4 +58,16 @@ void handle_pop(stack_t **buff, unsigned int l_num)
 	*buff = tmp->next;
 	if (*buff != NULL)
 		(*buff)->prev = NULL;
+}
+
+/**
+ * handle_nop - literally does nothing
+ * @buff: pointer to the top of the stack
+ * @l_num: the index of the current line
+ *
+ */
+void handle_nop(__attribute__ ((unused))stack_t **buff,
+		__attribute__ ((unused))unsigned int l_num)
+{
+	;
 }

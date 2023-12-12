@@ -56,6 +56,9 @@ void handle_sub(stack_t **buff, unsigned int l_num);
 void handle_mul(stack_t **buff, unsigned int l_num);
 void handle_div(stack_t **buff, unsigned int l_num);
 void handle_mod(stack_t **buff, unsigned int l_num);
+/*task11_12*/
+void handle_pchar(stack_t **buff, unsigned int l_num);
+void handle_pstr(stack_t **buff, __attribute__ ((unused))unsigned int l_nun);
 /*h_exit*/
 void _free(stack_t *ptr);
 void handle_exit(stack_t **buff);

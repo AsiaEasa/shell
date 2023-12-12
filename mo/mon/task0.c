@@ -1,58 +1,85 @@
 #include "monty.h"
 /**
- * _push - push int to a stack
- * @stack: linked lists for monty stack
- * @line_number: number of line opcode occurs on
+ * handle_push - to push int to a stack
+ * @buff: linked lists for monty stack
+ * @l_num: number of line
  */
-void _push(stack_t **stack, unsigned int line_number)
+void handle_push(stack_t **buff, unsigned int l_number)
 {
+	char *token, *m;
 	stack_t *new;
-	char *arg;
-	int push_arg;
+	int new_push;
 
-	push_arg = 0;
+	m= "Error: malloc failed\n";
+	new_push = 0;
 	new = malloc(sizeof(stack_t));
 	if (!new)
 	{
-		printf("Error: malloc failed\n");
-		error_exit(stack);
+		write(2, p, strlen(p));
+		handle_exit(buff);
 	}
 
-	arg = strtok(NULL, "\n ");
-	if (isnumber(arg) == 1 && arg != NULL)
+	token = strtok(NULL, "\n ");
+	if (isnumber(token) == 1 && token != NULL)
 	{
-		push_arg = atoi(arg);
+		new_push = atoi(token);
 	}
 	else
 	{
-		printf("L%d: usage: push integer\n", line_number);
-		error_exit(stack);
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		handle_exit(buff);
 	}
 
-	if (sq_flag == 1)
+	if (q_or_s == 1)
 	{
-		add_dnodeint_end(stack, push_arg);
+		add_dnodeint_end(buff, new_push);
 	}
 
-	if (sq_flag == 0)
+	if (q_or_s == 0)
 	{
-		add_dnodeint(stack, push_arg);
+		add_dnodeint(buff, new_push);
 	}
 
 }
 /**
- * _pall - print all function
- * @stack: pointer to linked list stack
- * @line_number: number of line opcode occurs on
+ * handle_pall - print all stak
+ * @buff: pointer to linked list stack
+ * @l_num: number of line
  */
-void _pall(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
+void handle_pall(stack_t **buff, __attribute__ ((unused))unsigned int l_num)
 {
-	stack_t *runner;
+	stack_t *print;
+	int i;
 
-	runner = *stack;
-	while (runner != NULL)
+	(void) l_num;
+	print = *buff;
+	if (buff == NULL)
+		handle_exit(buff);
+
+	for (i = 0; print != NULL; i++)
 	{
-		printf("%d\n", runner->n);
-		runner = runner->next;
+		printf("%d\n", print->n);
+		print = print->next;
 	}
+}
+
+/**
+ * is_stack - sets q_or_s to stack
+ * @buff: pointer to stack list
+ * @l_num: line number opcode occurs
+ */
+void is_stack(stack_t **buff, unsigned int l_num)
+{
+	(void) buff, (void) l_num;
+	q_or_s = 0;
+}
+/**
+ * is_queue - sets q_or_s to queue
+ * @buff: pointer to stack list
+ * @l_num: line number opcode occurs
+ */
+void is_queue(stack_t **buff, unsigned int l_num)
+{
+	(void) buff, (void) l_num;
+	q_or_s = 1;
 }

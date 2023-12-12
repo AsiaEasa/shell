@@ -6,7 +6,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <ctype.h>
-
+ssize_t getline(char **lineptr, size_t *n, FILE *stream);
 extern int sq_flag;
 /*--- Struct Definitions ---*/
 /**

@@ -8,7 +8,7 @@
 #include <ctype.h>
 
 extern int q_or_s;
-/*--- Struct Definitions ---*/
+/*Struct Definitions*/
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -37,7 +37,6 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-
 /*task0*/
 void handle_push(stack_t **buff, unsigned int l_number);
 void handle_pall(stack_t **buff, unsigned int l_num);
@@ -68,12 +67,13 @@ void handle_exit(stack_t **buff);
 /*op_node*/
 stack_t *add_dnodeint(stack_t **head, const int n);
 stack_t *add_dnodeint_end(stack_t **head, const int n);
-
+/*op_func*/
 void open_file(char *file_name, stack_t **buff);
 int get(FILE *file, stack_t **buff);
 typedef void (*instruct_func)(stack_t **stack, unsigned int line_number);
 char *p_line(char *line);
 ssize_t getline(char **lineptr, size_t *n, FILE *stream);
 instruct_func op_func(char *str);
+
 int isnumber(char *str);
 #endif

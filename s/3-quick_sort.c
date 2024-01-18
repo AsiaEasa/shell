@@ -1,61 +1,67 @@
 #include "sort.h"
 
 /**
- * lomutoPartition - sorts pivot
- * @array: The array to sort
- * @start:  start of the index
+ * lomuto_Par - sorts pivot
+ * @ar: The array to sort
+ * @begin:  start of the index
  * @end: the end of index
- * @size:  array  of size
+ * @len:  array  of size
  * Return: The index of the pivot
  */
-size_t lomuto_Par(int *ar, size_t begin, size_t end, size_t len)
+
+size_t lomuto_Par(int *ar, ssize_t begin, ssize_t end, size_t len)
 {
 	int pivot = ar[end], p;
 	int i, j;
 
-	for (j = i = begin; j < end; j++)
+	i = begin;
+	j = begin;
+	while (j < end)
 	{
-		if (array[j] < pivot)
+		if (pivot > ar[j])
 		{
 
-			if (i != j)
+			if (ar[i] != ar[j])
 			{
-				p = array[j];
-				array[j] = array[i];
-				array[i] = p;
-				print_array(array, size);
+				/* swap */
+				p = ar[j];
+				ar[j] = ar[i];
+				ar[i] = p;
+				print_array(ar, len);
 			}
 			i+=1;
 		}
+		j++;
 	}
-
-	/* swap */
-	p = array[i];
-	array[i] = array[end];
-	array[end] = p;
-	print_array(array, size);
+	if (ar[i] != ar[j])
+	{
+		/* swap */
+		p = ar[i];
+		ar[i] = ar[end];
+		ar[end] = p;
+		print_array(ar, len);
+	}
 	return (i);
 }
 
 /**
- * quick_sort_rec - sorts an array using the quick sort algorithm
- * @array: array to sort
- * @start: start  of index
+ * quick_rec - sorts an array using the quick sort algorithm
+ * @ar: array to sort
+ * @begin: start  of index
  * @end: end of index
- * @size: array  of size
+ * @len: array  of size
  */
-void quick_sort_rec(int *array, int start, int end, size_t size)
+void quick_rec(int *ar, int begin, int end, size_t len)
 {
-	size_t idx_part;
+	size_t i_part;
 
-	/* base */
-	if (end < start)
-		return;
+	if (end > begin)
+	{
+		i_part = lomuto_Par(ar, begin, end, len);
 
-	idx_part = lomutoPartition(array, start, end, size);
-
-	quick_sort_rec(array, start, idx_part - 1, size);
-	quick_sort_rec(array, idx_part + 1, end, size);
+		quick_rec(ar, begin, i_part - 1, len);
+		quick_rec(ar, i_part + 1, end, len);
+	}
 }
 
 /**
@@ -65,5 +71,8 @@ void quick_sort_rec(int *array, int start, int end, size_t size)
  */
 void quick_sort(int *array, size_t size)
 {
-	quick_sort_rec(array, 0, size - 1, size);
+	if (!array || !size || size < 2)
+		return;
+
+	quick_rec(array, 0, size - 1, size);
 }

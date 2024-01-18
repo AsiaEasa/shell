@@ -27,4 +27,8 @@ void insertion_sort_list(listint_t **list);
 
 void selection_sort(int *array, size_t size);
 
+size_t lomuto_Par(int *ar, ssize_t begin, ssize_t end, size_t len);
+void quick_rec(int *ar, int begin, int end, size_t len);
+void quick_sort(int *array, size_t size);
+
 #endif

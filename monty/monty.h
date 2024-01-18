@@ -6,8 +6,8 @@
 #include <string.h>
 #include <unistd.h>
 #include <ctype.h>
-ssize_t getline(char **lineptr, size_t *n, FILE *stream);
-extern int sq_flag;
+
+extern int sq_flag = 0;
 /*--- Struct Definitions ---*/
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -40,6 +40,7 @@ typedef struct instruction_s
 
 typedef void (*instruct_func)(stack_t **stack, unsigned int line_number);
 char *parse_line(char *line);
+ssize_t getline(char **lineptr, size_t *n, FILE *stream);
 instruct_func get_op_func(char *str);
 void read_file(char *filename, stack_t **stack);
 void _pall(stack_t **stack, unsigned int line_number);

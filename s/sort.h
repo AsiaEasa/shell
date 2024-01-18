@@ -32,4 +32,7 @@ void quick_rec(int *ar, int begin, int end, size_t len);
 void quick_sort(int *array, size_t size);
 
 void shell_sort(int *array, size_t size);
+
+void swap(listint_t **list, listint_t *a, listint_t *b);
+void cocktail_sort_list(listint_t **list);
 #endif

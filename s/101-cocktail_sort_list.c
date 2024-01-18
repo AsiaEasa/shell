@@ -6,7 +6,6 @@
  * @a: The first node to swap.
  * @b: The second node to swap.
  */
-
 void swap(listint_t **list, listint_t *a, listint_t *b)
 {
 	if (a->prev != NULL)
@@ -16,14 +15,47 @@ void swap(listint_t **list, listint_t *a, listint_t *b)
 
 	if (b->next != NULL)
 		b->next->prev = a;
-	
+
 	a->next = b->next;
 	b->prev = a->prev;
-	
+
 	a->prev = b;
 	b->next = a;
+
+	if (a->next != NULL)
+		a->next->prev = a;
+
+	if (b->prev != NULL)
+		b->prev->next = b;
 }
 
+void swap_prev(listint_t **list, listint_t *a, listint_t *b)
+{
+	listint_t *temp;
+	if (b->next != NULL)
+		b->next->prev = a;
+
+	if (a->prev != NULL) {
+		a->prev->next = b;
+	}
+
+	temp = b->next;
+	b->next = a->next;
+	a->prev = b->prev;
+	b->prev = a;
+
+	a->next = temp;
+
+	if (b->next != NULL) {
+		b->next->prev = b;
+	}
+
+	if (a->prev != NULL) {
+		a->prev->next = a;
+	} else {
+		*list = a;
+	}
+}
 /**
  * cocktail_sort_list - Sort a listint_t doubly-linked list of integers.
  * @list: A pointer to the head of a listint_t doubly-linked list.
@@ -53,13 +85,13 @@ void cocktail_sort_list(listint_t **list)
 				x = 0;
 			}
 		}
-		
+
 		sh = ta;
 		for (; sh != *list; sh = sh->prev)
 		{
 			if (sh->prev->n > sh->n)
 			{
-				swap(list, sh->prev, sh);
+				swap_prev(list, sh->prev, sh);
 				print_list((const listint_t *)*list);
 				x = 0;
 			}

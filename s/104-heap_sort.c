@@ -4,8 +4,6 @@
 #define le_ft(i) ((2 * i) + 1)
 #define ri_ght(i) ((2 * i) + 2)
 
-void _heap(int *array, size_t size, size_t B, size_t top);
-void heap_sort(int *array, size_t size);
 
 /**
  * _heap -Function use in the Heap sort algorithm.

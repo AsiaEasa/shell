@@ -152,7 +152,7 @@ void bitonic_sort(int *array, size_t size)
 		print_array(array, (len / i));
 	}
 
-	for (i = 2; i < size / 2; i += 4)
+	for (i = 2; i < (int)size / 2; i += 4)
 	{
 		k++;
 		up_d(array, size, start, i, l++);

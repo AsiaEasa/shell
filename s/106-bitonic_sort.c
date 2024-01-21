@@ -1,45 +1,5 @@
 #include "sort.h"
 
-void mid(int *array, size_t size)
-{
-	int x;
-	int i, j, h;
-
-	for (i = 0; i < 4; i++)
-	{
-		if (array[i] > array[i + 4])
-		{
-			x = array[i];
-			array[i] = array[i + 4];
-			array[i + 4] = x;
-		}
-	}
-
-	for (i = 0; i <= 4; i++)
-	{
-		if (array[i] > array[i + 2])
-		{
-			x = array[i];
-			array[i] = array[i + 2];
-			array[i + 2] = x;
-		}
-		if(i == 1)
-			i += 3;
-	}
-
-	for (i = 0; i < 8; i+=2)
-	{
-		if (array[i] > array[i + 1])
-		{
-			x = array[i];
-			array[i] = array[i + 1];
-			array[i + 1] = x;
-		}
-	}
-	printf("Result [%lu/%lu] (UP):\n", 8, size);
-	print_array(array, (size / 2));
-}
-
 void up_d1(int *array, size_t size, int start, int up, int l)
 {
 	int x;
@@ -67,7 +27,7 @@ void up_d1(int *array, size_t size, int start, int up, int l)
 				array[j + 1] = x;
 			}
 		}
-		printf("Result [%lu/%lu] (UP):\n", 4, size);
+		printf("Result [%u/%lu] (UP):\n", 4, size);
 		print_array(array, (i + 2));
 	}
 	else
@@ -82,7 +42,7 @@ void up_d1(int *array, size_t size, int start, int up, int l)
 
 			}
 		}
-		for (; j < up + start; j+=2)
+		for (; j <= up; j+=2)
 		{
 			if (array[j] < array[j + 1])
 			{
@@ -91,7 +51,7 @@ void up_d1(int *array, size_t size, int start, int up, int l)
 				array[j + 1] = x;
 			}
 		}
-		printf("Result [%lu/%lu] (DOWN):\n", 4, size);
+		printf("Result [%u/%lu] (DOWN):\n", 4, size);
 		print_array(array + start, 4);
 	}
 }
@@ -113,10 +73,10 @@ void up_d(int *array, size_t size, int start, int up, int l)
 		}
 	}
 	i++;
-	printf("Result [%lu/%lu] (UP):\n", 2, size);
+	printf("Result [%u/%lu] (UP):\n", 2, size);
 	print_array(array + start, 2);
 
-	printf("Merging [%lu/%lu] (DOWN):\n", 2, size);
+	printf("Merging [%u/%lu] (DOWN):\n", 2, size);
 	print_array(array + i, 2);
 
 	for (; i < up + 1; i++)
@@ -129,16 +89,16 @@ void up_d(int *array, size_t size, int start, int up, int l)
 		}
 	}
 
-	printf("Result [%lu/%lu] (DOWN):\n", 2, size);
+	printf("Result [%u/%lu] (DOWN):\n", 2, size);
 	print_array(array + (i - 1), 2);
 	up_d1(array, size, start, up, l);
 }
-
 void bitonic_sort(int *array, size_t size)
 {
-	size_t step, len;
+	size_t len;
 	int i, l, k, start;
-	
+	int arr[size / 2];
+
 	len = size;
 	l = 2;
 	k = 1;
@@ -158,12 +118,42 @@ void bitonic_sort(int *array, size_t size)
 		up_d(array, size, start, i, l++);
 		if(k % 2 == 0)
 		{
-			printf("Merging [%lu/%lu] (DOWN):\n", 4, size);
+			printf("Merging [%u/%lu] (DOWN):\n", 4, size);
 			print_array(array + (start + 4), (start + 4));
-			printf("Merging [%lu/%lu] (UP):\n", 2, size);
+			printf("Merging [%u/%lu] (UP):\n", 2, size);
 			print_array(array + 4, 2);
 			start += 4;
 		}
 	}
 	mid(array, size);
+	for (i = 0; i < (int)size; i++)
+	{
+		arr[i] = array[i + size / 2];
+	}
+	printf("Merging [%u/%lu] (DOWN):\n", 8, len);
+	print_array(arr, 8);
+
+	for (i = 4; i >= 2; i /= 2)
+	{
+		printf("Merging [%lu/%lu] (UP):\n", i, len);
+		print_array(arr, i);
+	}
+
+	l = 2;
+	k = 1;
+	start = 0;
+
+	up_d(arr, len, start, 2, l++);
+	printf("Merging [%u/%lu] (DOWN):\n", 4, len);
+	print_array(arr + 4, 4);
+	printf("Merging [%u/%lu] (UP):\n", 2, len);
+	print_array(arr + 4, 2);
+	start += 4;
+	up_d(arr, len, start, 6, l++);
+	midD(arr, 16);
+	for (i = 0; i < 8; i++)
+	{
+		array[i + 8] = arr[i];
+	}
+	midf(array, len);
 }
